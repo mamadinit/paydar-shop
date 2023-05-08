@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <meta name="theme-color" content="#ff1d1d">
+    <link rel="stylesheet" href="css/min.css">
+    <link rel="stylesheet" href="fonts/FontAwesome.Pro.5.15.2.Web/css/all.css">
+    <link rel="stylesheet" href="css/responsive.css ">
+    <script src="js/jquery.js"></script>
+    <title>وب پارادیس | webparadis</title>
+</head>
+
+<body>
+    <div id="loading"> <img src="img/Eclipse-1s-200px.gif" alt=""> <span class="mt-1"> درحال بارگیری </span> </div>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-wihte shadow-sm d-none">
+            <div class="container-fluid mx-md-4 mx-2">
+                <a class="navbar-brand" href="#"><img src="img/logo-dark.png" class="img-fluid" alt=""></a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">صفحه اصلی</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="shop.html">دسته بندی کالا ها</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="shop.html"> فروشگاه </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="shop.html"> پرفروشترین ها </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="shop.html"> تخفیفات و پیشنهادات </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="blog.html"> وبلاگ </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+                        <li class="nav-item me-2">
+                            <a class="nav-link" aria-current="page" href="#"> 045-32720000 <i class="far fa-user-headset fs-4 ms-1"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item me-2">
+                            <a href="#" type="button" class="pt-2 text-muted" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <i class="far fa-search fs-4 me-1"></i>
+                            </a>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title  fw-bold fs-6" id="exampleModalLabel"> جستجوی محصول </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="#" method="post">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control fw-bold fs-small text-muted py-2" placeholder="جستجوی محصول">
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary btn-sm btn-secondary fw-bold bg-green " data-bs-dismiss="modal">بستن</button>
+                                            <button type="button" class="btn btn-sm btn-primary fw-bold bg-red"> جستجو </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item me-3">
+                            <div class="btn-group">
+                                <button type="" class="btn shadow-cm px-2 bg-wihte rounded py-2" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                                    <div class="num-lock">
+                                        <span class="position-relative nl-number">8</span>
+                                    </div>
+                                    <i class="fal fa-shopping-bag fs-4 px-1"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-lg-end">
+                                    <div class="btn-group text-center">
+                                        <span class="text-muted fs-small px-3"> سبد خرید شما خالی می باشد </span>
+                                    </div>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="btn btn-red rounded d-flex alight-items-center py-2 px-2"> <i class="fad fa-user-circle fs-3 top-1 me-1"></i> ورود عضویت </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <nav class="menu col-12 container-fluid shadow-cm bg-wihte d-flex align-items-center justify-content-center">
+            <div class="menu-con col-12">
+                <div class="row px-3 d-flex align-items-center justify-content-center">
+                    <div class="col-12 d-flex-c-b px-0 py-2">
+                        <button href="" class="fs-3 text-muted pt-2 pe-2 bg-wihte" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"><i class="far fa-bars pb-0"></i></button>
+                        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                            <div class="offcanvas-header">
+                                <h5 class="offcanvas-title fw-bold fs-6" id="offcanvasNavbarLabel"> وب پارادیس </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body p-0 mx-0">
+                                <ul id="accordion" class="accordion px-0 mx-0">
+                                    <li>
+                                        <div class="link"><i class="fa fa-chevron-down"></i> دسته بندی کالا ها </div>
+                                        <ul class="submenu ps-0">
+                                            <li><a href="#">عنوان دسته</a></li>
+                                            <li><a href="#">عنوان دسته</a></li>
+                                            <li><a href="#">عنوان دشته</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="link py-4">فروشگاه </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="link py-4">پر فروش ترین ها </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="link py-4">تخفیفات و پیشنهادات </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="link py-4"> وبلاگ </a>
+                                    </li>
+                                </ul>
+                                <script>
+                                    $(function() {
+                                        var Accordion = function(el, multiple) {
+                                            this.el = el || {};
+                                            this.multiple = multiple || false;
+
+                                            // Variables privadas
+                                            var links = this.el.find('.link');
+                                            // Evento
+                                            links.on('click', {
+                                                el: this.el,
+                                                multiple: this.multiple
+                                            }, this.dropdown)
+                                        }
+
+                                        Accordion.prototype.dropdown = function(e) {
+                                            var $el = e.data.el;
+                                            $this = $(this),
+                                                $next = $this.next();
+
+                                            $next.slideToggle();
+                                            $this.parent().toggleClass('open');
+
+                                            if (!e.data.multiple) {
+                                                $el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+                                            };
+                                        }
+
+                                        var accordion = new Accordion($('#accordion'), false);
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                        <img src="img/logo-dark.png" class="" alt="">
+                        <a href="" class="fs-3 text-muted"><i class="far fa-user-headset"></i>  </a>
+                    </div>
+                    <div class="hr menu-hr mb-2"></div>
+                    <div class="col-12 menu-section2 d-flex-c-b px-0 pb-2">
+                        <div class="row w-100 px-0 mx-0 d-flex-c-b">
+                            <div class="col-9 px-0">
+                                <div class="form-group position-relative">
+                                    <input type="text" class="form-control search-box bg-light text-muted" placeholder=" جستجوی محصول ">
+                                    <a href="" class="form-icon text-muted"><i class="far fa-search"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-3 px-0 text-end d-flex align-items-center justify-content-end">
+                                <span class="badge bg-red position-relative mt-1 me-1">0</span>
+                                <i class="far fa-shopping-bag px-1 ps-0 text-muted fs-3"></i>
+                                <a href="" class="text-muted fs-3 ps-1"> <i class="far fa-user"></i> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </nav>
+    </header>
+    <!-- END HEADER -->
+    <section>
+        <div class="container-fluid blog mb-3">
+            <div class="row mx-lg-4 mx-0">
+                <div class="blog-head px-0">
+                    <div class="row">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb pb-3 pt-4 mb-0 fs-small">
+                                <li class="breadcrumb-item text-muted"><a href="#">خانه</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"> سفارشات </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-12 px-0">
+                    <div class="row d-flex align-items-start flex-wrap">
+                        <div class="col-lg-3 d-flex align-items-center justify-content-start flex-wrap">
+                            <div class="border rounded w-100 px-2 pt-2">
+                                <div class="w-100 d-flex border-bottom pb-2 mb-2">
+                                    <img src="img/profile-456.png" class="profile-user-img" alt="">
+                                    <div class="d-flex flex-column ps-3 pt-1">
+                                        <span class="fs-small text-muted"> وصال علی زاده </span>
+                                        <span class="profile-user-number pt-1"> 09901595095 </span>
+                                    </div>
+                                </div>
+                                <div class="w-100 d-flex align-items-center justify-content-between border-bottom pb-2">
+                                    <span class="fs-m text-muted"><i class="far fa-wallet top-2 pe-1"></i> موجودی کیف پول</span>
+                                    <span class="profile-user-number pt-1"> 2,000,000 تومان </span>
+                                </div>
+                                <div class="w-100 d-flex align-items-center justify-content-between py-2">
+                                    <span class="fs-m text-muted"><i class="far fa-calendar-alt top-2 pe-1"></i> تاریخ عضویت </span>
+                                    <span class="profile-user-number pt-1"> 1401/05/03 </span>
+                                </div>
+                            </div>
+                            <div class="border rounded w-100 px-2 mt-3 pt-2">
+                                <ul class="nav flex-column mx-0 fs-small text-muted">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="#"><i class="far fa-user-circle top-2 pe-1"></i> پروفایل</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"><i class="far fa-shopping-basket top-2 pe-1"></i> سفارشات  </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"><i class="far fa-heart top-2 pe-1"></i> علاقه مندی ها </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link"><i class="far fa-comment-alt-lines top-2 pe-1"></i> نظرات شما </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link"><i class="far fa-map-marker-alt top-2 pe-1"></i> آدرس ها </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link"><i class="far fa-wallet top-2 pe-1"></i> کیف پول </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link"><i class="far fa-user top-2 pe-1"></i> اطلاعات حساب کاربری </a>
+                                    </li>
+                                    <button class="btn bg-red text-light fw-bold rounded fs-m py-2 mt-2 mb-3"><i class="far fa-sign-out-alt top-2 pe-1"></i> خروج از حساب کاربری </button>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 ps-lg-4 mt-0 mt-lg-0">
+                            <div class="w-col-12 border bg-light rounded px-3 pt-2">
+                                <div class="d-flex-c-b py-2">
+                                    <span class="fs-small text-dark"> سفارش های شما </span> <a href="" class="fs-m text-muted"> مشاهده همه </a>
+                                </div>
+                                <div class="col-12 d-flex-c-b py-2">
+                                    <div class="card bg-information rounded mb-3" style="width: 32%;">
+                                        <div class="card-header fs-small">سفارشات جاری</div>
+                                        <div class="card-body">
+                                            <span class="fs-m"> 3 سفارش </span>
+                                        </div>
+                                        <div class="card-footer py-0 px-0">
+                                            <button class="fs-m fw-bold px-3 py-2 rounded text-muted w-100" data-bs-toggle="collapse" data-bs-target="#order-current" aria-expanded="false" aria-controls="order-current"> مشاهده سفارشات جاری</button>
+                                        </div>
+                                    </div>
+                                    <div class="card bg-information rounded mb-3" style="width: 32%;">
+                                        <div class="card-header fs-small">سفارشات تحویل شده</div>
+                                        <div class="card-body">
+                                            <span class="fs-m"> 1 سفارش  </span>
+                                        </div>
+                                        <div class="card-footer py-0 px-0">
+                                            <button class="fs-m fw-bold px-3 py-2 rounded text-muted w-100" data-bs-toggle="collapse" data-bs-target="#order-transfer" aria-expanded="false" aria-controls="transfer"> مشاهده سفارشات تحویل شده</button>
+                                        </div>
+                                    </div>
+                                    <div class="card bg-information rounded mb-3" style="width: 32%;">
+                                        <div class="card-header fs-small">سفارشات مرجوعی</div>
+                                        <div class="card-body">
+                                            <span class="fs-m"> 2 سفارش </span>
+                                        </div>
+                                        <div class="card-footer py-0 px-0">
+                                            <button class="fs-m fw-bold px-3 py-2 rounded text-muted w-100" data-bs-toggle="collapse" data-bs-target="#order-returned" aria-expanded="false" aria-controls="returned"> مشاهده سفارشات مرجوعی</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-3 border collapse transfer rounded pt-3 pb-2 px-3" id="order-transfer">
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-start">
+                                    <span class="fs-small text-muted"> <i class="fas fa-check-circle fs-5 text-success top-3 pe-1"></i> تحویل داده شده </span>
+                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> 23 آبان 1401 </span>
+                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> کد سفارش : 1400589825 </span>
+                                    <div class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> مبلغ پرداختی : <span class="text-light py-11 px-2 rounded mx-1 bg-green"> 2,000,000 </span> تومان </div>
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-start border-top mt-2 pt-3">
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> <span class="text-muted"> گیرنده : </span> <span class="text-dark"> وصال علی زاده </span> </div>
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> <span class="text-muted"> شماره مبایل : </span> <span class="text-dark"> 09901595095 </span> </div>
+                                    <div class="fs-small"> <span class="text-muted mb-2"> آدرس : </span> <span class="text-dark"> اردبیل - شهرستان پارس آباد- محله بالاقارداش - خیابان اصلی  </span> </div>
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-start border-top mt-2 pt-3">
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> <span class="text-muted"> زمان تحویل : </span> <span class="text-dark"> بازه یکشنبه ۲۵ آبان - چهار‌شنبه ۲۸ آبان </span> </div>
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> <span class="text-muted"> هزینه ارسال : </span> <span class="text-dark"> 09901595095 </span> </div>
+                                    <div class="fs-small"> <span class="text-muted mb-2"> کد پیگیری مرسوله : </span> <span class="text-dark">7859728558</span> </div>
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-start border-top mt-2 pt-3">
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> <span class="text-muted"> کد محصول : </span> <span class="text-dark"> 4486242 </span> </div>
+                                    <div class="fs-small mb-2"> <span class="text-muted"> نام محصول : </span> <span class="text-dark"> مودم روتر ADSL2 Plus بی‌سیم N300 تی پی-لینک مدل TD-W8961N_V1 </span> </div>
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-start border-top mt-2 pt-2">
+                                    <button class="btn bg-red fw-bold fs-m text-light  rounded px-2 py-1 mx-1" data-bs-toggle="modal" data-bs-target="#returned" data-bs-whatever="@mdo"> ثبت مرجوعی </button>
+                                </div>
+                                <div class="modal fade" id="returned" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id=""> ثبت مرجوعی این محصول </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="mb-3">
+                                                        <label for="recipient-name" class="col-form-label">نام و نام خانوادگی:</label>
+                                                        <input type="text" class="form-control" value="وصال علی زاده">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="recipient-name" class="col-form-label"> شماره تماس  :</label>
+                                                        <input type="text" class="form-control" value="09901595095">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="recipient-name" class="col-form-label"> شماره سفارش  :</label>
+                                                        <input type="text" class="form-control" value="1400589825">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="recipient-name" class="col-form-label"> پیغام یا دلیل مرجوع :</label>
+                                                        <textarea name="" id="" cols="30" rows="2" class="form-control"></textarea>
+                                                    </div>
+                                                    <div class=" bg-light d-flex-c-c flex-column border text-center pt-2">
+                                                        <span class="text-muted fs-m"> عکس یا ویدیو خود را وارد نمایدد <br> 1 تصویر Png , jpg حداکثر 2 مگابایت یک ویدیو MP4 حداکثر 50 مگابایت </span>
+                                                        <input type="file" class="form-control select-file-returned-file bg-success mx-auto px-2 py-1 rounded shadow-sm">
+                                                        <div class="select-file-returned-btn fs-m"> آپلود عکس یا ویدیو </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn bg-red px-2 py-1 text-light rounded fs-m" data-bs-dismiss="modal">بستن</button>
+                                                <button type="button" class="btn bg-down px-2 py-1 text-light rounded fs-m"> ثبت درخواست </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-3 border collapse rounded pt-3 pb-2 px-3" id="order-current">
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-start">
+                                    <span class="fs-small text-muted"> <i class="fas fa-check-circle fs-5 text-success top-3 pe-1"></i> خروج از انبار </span>
+                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> 23 آبان 1401 دوشنبه </span>
+                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> ساعت : 14:36 </span>
+                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> مرجله بعدی  : تحویل به مامور ارسال </span>
+                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> درصد پیشرفت :  45%   </span>
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-start border-top pt-2 mt-2">
+                                    <span class="fs-small text-muted"> <i class="fas fa-check-circle fs-5 text-success top-3 pe-1"></i> تحویل به مامور ارسال </span>
+                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> 24 آبان 1401 سه شنبه </span>
+                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> ساعت : 18:12 </span>
+                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> مرجله بعدی  : تحویل به گیرنده </span>
+                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> درصد پیشرفت :  90%   </span>
+                                </div>
+
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-start border-top mt-2 pt-3">
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> <span class="text-muted"> کد محصول : </span> <span class="text-dark"> 4486242 </span> </div>
+                                    <div class="fs-small mb-2"> <span class="text-muted"> نام محصول : </span> <span class="text-dark"> مودم روتر ADSL2 Plus بی‌سیم N300 تی پی-لینک مدل TD-W8961N_V1 </span> </div>
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-start">
+                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> کد سفارش : 1400589825 </span>
+                                    <div class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> مبلغ پرداختی : <span class="text-light py-11 px-2 rounded mx-1 bg-green"> 2,000,000 </span> تومان </div>
+                                </div>
+                                <!-- <div class="alert alert-warning fs-m text-center mt-3"> شما محصولی سفارش نداده اید </div> -->
+                            </div>
+                            <div class="col-12 mt-3 border collapse returned rounded pt-3 pb-2 px-3" id="order-returned">
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-start">
+                                    <span class="fs-small text-muted mb-2"> <i class="fas fa-times-circle fs-5 top-3 pe-1 text-danger"></i> عدم تایید مرجوعی </span>
+                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> 23 آبان 1401 دوشنبه </span>
+                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> ساعت : 14:36 </span>
+                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> کد سفارش : 1400589825  </span>
+                                    <button class="btn btn-sm fs-m bg-red text-light px-2 py-1 rounded top-2 ms-3 border-start ms-3 mb-2" data-bs-toggle="modal" data-bs-target="#reedmore" data-bs-whatever="@mdo"> مشاهده علت </button>
+                                    <div class="modal fade" id="reedmore" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id=""> علت رد درخواست مرجوعی </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <span class="text-muted fs-small paragraph">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+                                                    </span>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn bg-red px-2 py-1 text-light rounded fs-m" data-bs-dismiss="modal">بستن</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2 border collapse returned rounded pt-3 pb-2 px-3" id="order-returned">
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-start">
+                                    <span class="fs-small text-muted mb-2"> <i class="fas fa-check-circle fs-5 top-3 pe-1 text-success"></i>  تایید مرجوعی </span>
+                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> 23 آبان 1401 دوشنبه </span>
+                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> ساعت : 14:36 </span>
+                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> کد سفارش : 1400589825  </span>
+                                    <button class="btn btn-sm bg-red text-light fs-m px-2 py-1 rounded top-2 ms-3 border-start ms-3 mb-2" data-bs-toggle="modal" data-bs-target="#howreturn" data-bs-whatever="@mdo"> مشاهده نحوه مرجوعی  </button>
+                                    <div class="modal fade" id="howreturn" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id=""> نحوه مرجوعی کالا </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <span class="text-muted fs-small paragraph">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+                                                    </span>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn bg-red px-2 py-1 text-light rounded fs-m" data-bs-dismiss="modal">بستن</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-start border-top mt-2 pt-3">
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> <span class="text-muted"> فرستنده : </span> <span class="text-dark"> وصال علی زاده </span> </div>
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> <span class="text-muted"> شماره مبایل : </span> <span class="text-dark"> 09901595095 </span> </div>
+                                    <div class="fs-small ئذ-2"> <span class="text-muted"> آدرس فرستنده : </span> <span class="text-dark"> اردبیل - شهرستان پارس آباد- محله بالاقارداش - خیابان اصلی  </span> </div>
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-start border-top mt-2 pt-3">
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> <span class="text-muted"> هزینه مرجوعی ( پست ) : </span> <span class="text-dark"> 13500 تومان </span> </div>
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> <span class="text-muted"> شماره مبایل : </span> <span class="text-dark"> 09901595095 </span> </div>
+                                    <div class="fs-small ئذ-2"> <span class="text-muted"> وضعیت کالا : </span> <span class="text-dark"> مرجوع شده  </span> </div>
+                                </div>
+                                <!-- <div class="alert alert-warning fs-m text-center mt-3"> شما محصولی سفارش نداده اید </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END SECTION -->
+    <footer>
+        <div class="container-fluid footer shadow-sm ">
+            <div class="row mx-0 ">
+                <div class="col-12 px-0 ">
+                    <div class="row ">
+                        <div class="footer-head pt-4 px-5 px-lg-5 ">
+                            <div class="row px-0 px-lg-5 mt-2 ">
+                                <div class="col-md-2 col-6 px-0 footer-item-links d-flex flex-column ">
+                                    <span class="text-dark fw-bold ">دسترسی سریع</span>
+                                    <ul class="ps-4 mt-3 ">
+                                        <li class="fil-li ">
+                                            <a href=" " class="fil-links ">فروشگاه </a>
+                                        </li>
+                                        <li class="fil-li ">
+                                            <a href=" " class="fil-links ">درباره ما </a>
+                                        </li>
+                                        <li class="fil-li ">
+                                            <a href=" " class="fil-links ">تماس با ما </a>
+                                        </li>
+                                        <li class="fil-li ">
+                                            <a href=" " class="fil-links "> سبد خرید  </a>
+                                        </li>
+                                        <li class="fil-li ">
+                                            <a href=" " class="fil-links "> صفحه اصلی  </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-2 col-6 px-0 footer-item-links d-flex flex-column ">
+                                    <span class="text-dark "> محصولات الکترونیک </span>
+                                    <ul class="ps-4 mt-3 ">
+                                        <li class="fil-li ">
+                                            <a href=" " class="fil-links ">لپ تاپ </a>
+                                        </li>
+                                        <li class="fil-li ">
+                                            <a href=" " class="fil-links "> کیس اسمبل شده </a>
+                                        </li>
+                                        <li class="fil-li ">
+                                            <a href=" " class="fil-links "> هدفون و هندزفری </a>
+                                        </li>
+                                        <li class="fil-li ">
+                                            <a href=" " class="fil-links "> لوازم جانبی گوشی </a>
+                                        </li>
+                                        <li class="fil-li ">
+                                            <a href=" " class="fil-links "> لوازم جانبی لب تاپ </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-3 px-0 footer-item-links d-flex ms-lg-5 flex-column ">
+                                    <span class="text-dark "> تماس با ما </span>
+                                    <ul class="ps-4 mt-3 ">
+                                        <li class="fil-li ">
+                                            <a href=" " class="fil-links fcb text-light "> <i class="far fa-user-headset "></i> 09901595095 </a>
+                                        </li>
+                                        <li class="fil-li ">
+                                            <a href=" " class="fil-links "> <i class="fas fa-map-marker-alt "></i> پارس آباد ، خیابان شهید صدوقی ، دفتر مرکزی </a>
+                                        </li>
+                                        <li class="fil-li ">
+                                            <a href=" " class="fil-links "> <i class="fas fa-envelope "></i> alizadevesal@gmail.com </a>
+                                        </li>
+                                        <li class="fil-li ">
+                                            <a href=" " class="fil-links "> <i class="fab fa-instagram-square "></i> vesalalizadeh.ir </a>
+                                        </li>
+                                        <li class="fil-li ">
+                                            <a href=" " class="fil-links "><i class="fab fa-whatsapp-square "></i> 09901595095  </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4 px-0 ms-0 d-flex justify-content-center ">
+                                    <ul class="ps-4 mt-md-3 d-flex-c-c ">
+                                        <li>
+                                            <a href=" "><img src="img/zarinpalllogofooter.webp " class="col-10 col-md-6 col-lg-10 " alt=" "></a>
+                                        </li>
+                                        <li>
+                                            <a href=" "><img src="img/enamad.webp " class="col-10 col-md-6 col-lg-10 " alt=" "> </a>
+                                        </li>
+                                        <li>
+                                            <a href=" "><img src="img/samandehi.webp " class="col-10 col-md-6 col-lg-10 " alt=" "> </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer-body ">
+                            <div class="row px-3 px-md-5 d-flex-c-b py-3 py-lg-5 ">
+                                <div class="col-md-3 d-flex justify-content-center ">
+                                    <img src="img/logo-light.png " class="footer-body-img mx-auto " alt=" ">
+                                </div>
+                                <div class="col-md-9 ">
+                                    <p class="text-light paragraph mb-1 ">
+                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود می باشد.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer-footer bg-wihte d-flex-c-b py-3 ">
+                            <div class="row ">
+                                <div class="col-md-6 "> <span class="text-muted mb-1 mb-lg-0 "> تمامی حقوق برای وب پارادیس محفوظ می باشد </span> </div>
+                                <div class="col-md-6 text-end "> <span class="text-muted "> طراح وبسایت وصال علی زاده </span> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END FOOTER -->
+    <script>
+        $(document).ready(function() {
+            $("#loading ").hide();
+        });
+    </script>
+    <script src="js/bootstrapV5.js"></script>
+</body>
+
+</html>
