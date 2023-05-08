@@ -1,0 +1,342 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title%}{{ object.title }}{% endblock %}
+{% block main %}
+<section>
+    <div class="container-fluid product">
+        <div class="row mx-lg-4 mx-0">
+            <div class="product-head px-0">
+                <div class="row">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb pb-3 pt-4 mb-0 fs-small">
+                            <li class="breadcrumb-item text-muted"><a href="#">خانه</a></li>
+                            <li class="breadcrumb-item"><a href="#">محصولات</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ object.title }}</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <div class="product-body px-0 mb-4">
+                <div class="row d-flex align-items-start">
+                    <div class="col-lg-4 pb-right px-0 py-2 position-relative border-end">
+                        <div class="owl-carousel owl-progallery mx-auto rounded px-lg-3" data-slider-id="1">
+                            {% for img in  object.images.all  %}
+                                <div><img src="{{ img.image.url }}" class="w-100" alt=""></div>
+                            {% endfor %}
+                        </div>
+                        <div class="owl-thumbs px-0 d-flex-c-c px-3" data-slider-id="1">
+                            {% for img in  object.images.all  %}
+                                <button class="owl-thumb-item bg-wihte shadow-bm rounded p-1 mx-1" data-fancybox="gallery" href="{{ img.image.url }}"><img src="{{ img.image.url }}"  alt=""> </button>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-lg-8 px-0 mt-4 mt-lg-0">
+                        <div class="row d-flex align-items-start mx-0">
+                            <div class="col-lg-7 px-4 ps-lg-4 pe-lg-0 pro-inf mx-0 px-0">
+                                <h2 class="fs-6 fw-bold txt-muted mb-2 pro-inf-title">{{ object.title }}</h2>
+
+                                <div class="pri-code col-12 mt-1">
+                                    <span> کد کالا : {{ object.pk }} </span>
+                                </div>
+                                <div class="category">
+                                    <span class="text-muted"> دسته بندی : <a href="" class="text-danger"> {% for cat in  object.category.all %} {{cat.title}} {% endfor %} </a> </span>
+                                    <!-- <span class="text-muted border-start ps-2"> برند <a href="" class="text-danger"> اپل </a> </span> -->
+                                </div>
+                                <div class="product-informations mt-3">
+                                    <p class="text-muted mb-0"> مشخصات محصول </p>
+                                    <ul class="p-0">
+                                        <li>
+                                            <p> سری پردازنده : <span class="text-danger"> {{ object.processor_series }} </span> </p>
+                                        </li>
+                                        <li>
+                                            <p> ظرفیت حافظه RAM : <span class="text-danger"> {{ object.ram_memory }} گیگابایت </span></p>
+                                        </li>
+                                        <li>
+                                            <p> پردازنده گرافیکی : <span class="text-danger">{{ object.gpu_series }}</span></p>
+                                        </li>
+                                        <li>
+                                            <p> اندازه صفحه نمایش ; <span class="text-danger"> {{ object.screen_size }} اینچ </span></p>
+                                        </li>
+                                        <li class="d-flex justify-content-start">
+                                            <p> طبقه‌بندی : <span class="text-danger">  
+                                                {% for c in object.classification.all %}
+                                                    - {{ c.title }}
+                                                {% endfor %}
+                                            </span></p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- ssssss -->
+                            {% if object.inventory %}
+                                <div class="col-lg-5 mt-3 mt-lg-0">
+                                    <!-- <div class="col-12 mx-0 pt-3 pb-2 px-4 border d-flex-c-c flex-column">
+                                        <div class="d-flex-c-c">
+                                            <div class="bg-red timer text-light d-flex-c-c flex-column rounded shadow-bm mb-0 mx-1">
+                                                <p class="mb-0">23</p> <span> ثانیه </span> </div>
+                                            <div class="bg-red timer text-light d-flex-c-c flex-column rounded shadow-bm mb-0 mx-1">
+                                                <p class="mb-0">59</p> <span> دقیقه </span> </div>
+                                            <div class="bg-red timer text-light d-flex-c-c flex-column rounded shadow-bm mb-0 mx-1">
+                                                <p class="mb-0">12</p> <span> ساعت </span> </div>
+                                            <div class="bg-red timer text-light d-flex-c-c flex-column rounded shadow-bm mb-0 mx-1">
+                                                <p class="mb-0">0</p> <span> روز </span> </div>
+                                        </div>
+                                        <span class="text-muted fs-small mt-3"> زمان باقیمانده تا پایان تخفیف </span>
+                                    </div> -->
+                                    <div class="col-12 mx-0 mt-2 py-3 px-3 border d-flex-c-c flex-column">
+                                        <div class="d-flex-c-c w-100 flex-column">
+                                            <div class="box-buy text-muted">
+                                                <i class="far fa-box-check pe-3"></i> <span> گارانتی ۶ ماهه تعویض بازرگانی پارس پردیس </span>
+                                            </div>
+
+                                            <div class="box-buy text-muted">
+                                                <i class="far fa-bookmark pe-3 ps-1"></i> <span class="text-light py-1 bg-success rounded px-2 me-2"> موجود در انباری </span> <span> ارسال پس از 4 روز کاری </span>
+                                            </div>
+                                            <div class="box-buy text-muted">
+                                                <i class="far fa-info-circle pe-3"></i><span>  امکان برگشت کالا در گروه ساعت هوشمند با دلیل "انصراف از خرید" تنها در صورتی مورد قبول است که پلمب کالا باز نشده باشد. </span>
+                                            </div>
+                                            <div class="box-price justify-content-betwwen text-muted w-100">
+                                                <div>
+                                                    <i class="fas fa-sack-dollar text-warning pe-3"></i> <span> قیمت محصول </span>
+
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-end flex-column">
+                                                    <div class="text-muted"> <del class="text-danger pe-2"> {{ object.price|intcomma  }} </del> <span class="bg-red px-2 text-light text-center rounded"> 0% </span>
+                                                    </div>
+                                                    <div class="text-muted w-100 py-0"> <span class="fs-5 yekanB">{{ object.price|intcomma  }} </span> <span>تومان</span></div>
+                                                </div>
+                                            </div>
+                                            <button class="w-100 btn bg-red rounded py-2 text-light fs-small fw-bold mt-3"> افزودن به سبد خرید </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}    
+
+
+                                <div class="col-lg-5 mt-3 mt-lg-0">
+
+                                    <div class="col-12 mx-0 mt-2 mt-lg-0 py-3 px-3 border d-flex-c-c flex-column">
+                                        <div class="d-flex-c-c w-100 flex-column">
+                                            <div class="box-buy text-muted">
+                                                <i class="far fa-box-check pe-3"></i> <span> گارانتی ۶ ماهه تعویض بازرگانی پارس پردیس </span>
+                                            </div>
+
+                                            <div class="box-buy text-muted">
+                                                <i class="far fa-bookmark pe-3"></i> <span class="text-light py-1 bg-red rounded px-2 me-2"> ناموجود در انباری </span> <span> در حال حاضر  ناموجود است </span>
+                                            </div>
+                                            <div class="box-buy text-muted">
+                                                <i class="far fa-info-circle pe-3"></i><span>  امکان برگشت کالا در گروه ساعت هوشمند با دلیل "انصراف از خرید" تنها در صورتی مورد قبول است که پلمب کالا باز نشده باشد. </span>
+                                            </div>
+                                            <div class="box-price justify-content-betwwen text-muted w-100">
+                                                <div>
+                                                    <i class="fas fa-sack-dollar text-warning pe-3"></i> <span> قیمت محصول </span>
+
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-end flex-column">
+
+                                                    <div class="text-muted w-100 py-0"> <span class="fs-5 yekanB">2,000,000 </span> <span>تومان</span></div>
+                                                </div>
+                                            </div>
+                                            <button class="w-100 btn bg-dark rounded py-2 text-light fs-small fw-bold mt-3"> موجود شد به من اطلاع بده </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}    
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-footer fs-small px-0 mb-4">
+                <div class="border-bottom pb-3">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active px-3" id="descriptions-tab" data-bs-toggle="tab" data-bs-target="#descriptions-tab-page" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="false">توضیحات کالا</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link px-3" id="technical-tab" data-bs-toggle="tab" data-bs-target="#technical-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">مشخصات فنی</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link px-3" id="comments-tab" data-bs-toggle="tab" data-bs-target="#comments-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">نظرات </button>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="descriptions-tab-page" role="tabpanel" aria-labelledby="descriptions-tab" tabindex="0">
+                            <p class="text-muted mt-4">{{ object.description|safe  }}</p>
+                        </div>
+                        <div class="tab-pane fade" id="technical-tab-pane" role="tabpanel" aria-labelledby="technical-tab" tabindex="0">
+                            <div class="row my-4 mx-lg-4">
+                                <div class="col-12 px-4 px-lg-0">
+                                    <div class="row">
+                                        {% for attribute in object.attribute.all  %}
+                                            <div class="d-flex-c-b flex-wrap w-100 px-0 mb-2">
+                                                <div class="rounded py-3 technical-right px-3">{{ attribute.title }}</div>
+                                                <div class="rounded py-3 technical-left px-3">{{ attribute.description }}</div>
+                                            </div>
+                                        {% endfor %}
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="comments-tab-pane" role="tabpanel" aria-labelledby="comments-tab" tabindex="0">
+
+                            <div class="w-100 mt-3">
+                                <div class="row">
+                                    <div class="col-12 commemts-head border-bottom pb-2 d-flex-c-c flex-wrap px-4">
+                                        <div class="col-lg-6 col-12 pe-lg-5">
+                                            <!-- <span class="text-warning"> لطفا برای ثبت نظر ابتدا وارد حساب کاربری خود شوید </span> -->
+                                            <form action="" method="get">
+                                                <div class="form-group">
+                                                    <textarea name="" class="form-control fw-bold fs-small pt-3" id="" cols="6" rows="6" placeholder="نظر یا پرسش خود را مطرح کنید ..."></textarea>
+                                                </div>
+                                                <button class="btn bg-red rounded px-3 py-2 text-light mt-2"> ثبت نظر </button>
+                                            </form>
+                                        </div>
+                                        <div class="col-lg-6 col-12 pb-3 pb-lg-5 mt-2 mt-lg-0">
+                                            <p class="mb-2 text-dark"> نظرات و پرسش و پاسخ </p>
+                                            <span class="text-muted"> برای ثبت نظر، لازم است ابتدا وارد حساب کاربری خود شوید. اگر این محصول را قبلا از دیجی‌کالا خریده باشید، نظر شما به عنوان مالک محصول ثبت خواهد شد. </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 commemts-body pb-2 d-flex-c-c mt-4 px-0">
+                                        <div class="col-lg-12 cm-card bg-light py-3">
+                                            <div class="cm-card-head d-flex-c-b px-3">
+                                                <div class="d-flex-c-b flex-wrap w-100">
+                                                    <div class="d-flex justify-content-start col-12 col-lg-6">
+                                                        <img src="{% static 'img/fc377d0cd92124769962556a3bcfb094.jpg' %}" class="rounded-circle" alt="">
+                                                        <div class="ms-3">
+                                                            <span class="text-muted mb-1 d-block"> وصال علی زاده </span>
+                                                            <span class="text-muted"> در تاریخ : 1401/04/24 </span>
+                                                            <div class="text-warning mt-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex justify-content-end col-12 col-lg-6">
+                                                        <div class="text-muted px-3 rounded my-1 text-light fs-small py-1"> خرید این محصول را پیشنهاد میکنم </div>
+                                                        <button class="btn btn-sm bg-red text-light px-2"> پاسخ </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="cm-card-body d-flex-c-b px-3">
+                                                <div class="d-flex-c-b w-100">
+                                                    <p class="mb-0 text-muted mt-2">
+                                                        پاسخ فروشنده : حسن لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای
+                                                        کاربردی می باشد.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-10 cm-card bg-wihte mt-3 mx-auto py-3">
+                                                <div class="cm-card-head d-flex-c-b px-3">
+                                                    <div class="d-flex-c-b flex-wrap w-100">
+                                                        <div class="d-flex justify-content-start col-12 col-lg-6">
+                                                            <img src="{% static 'img/fc377d0cd92124769962556a3bcfb094.jpg' %}   " class="rounded-circle" alt="">
+                                                            <div class="ms-3">
+                                                                <span class="text-muted mb-1 d-block"> وصال علی زاده </span>
+                                                                <span class="text-muted"> در تاریخ : 1401/04/24 </span>
+                                                                <div class="text-warning mt-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex justify-content-end col-12 col-lg-6">
+                                                            <div class="text-muted px-3 rounded my-1 text-light fs-small py-1"> خرید این محصول را پیشنهاد میکنم </div>
+                                                            <button class="btn btn-sm bg-red text-light px-2"> پاسخ </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="cm-card-body d-flex-c-b px-3">
+                                                    <div class="d-flex-c-b w-100">
+                                                        <p class="mb-0 text-muted mt-2">
+                                                            پاسخ فروشنده : حسن لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای
+                                                            کاربردی می باشد.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-12 widget-right mt-3 px-3 py-0">
+                    <div class="row">
+                        <div class="widget-right-header d-flex-c-b">
+                            <span class="text-muted fs-6 pt-3 pb-2"> محصولات مشابه </span>
+                            <a href="" class="fs-small text-muted"> مشاهده همه</a>
+                        </div>
+                        <div class="my-4">
+                            <div class="owl-carousel owl-widget-Similar owl-theme">
+                                <div class="item my-2">
+                                    <div class="box-widge rounded bg-wihte">
+                                        <div class="wnd-right-box-head px-4 rounded position-relative ">
+                                            <img src="img/product6.webp" class="img-fluid" alt=" ">
+                                        </div>
+                                        <div class="wnd-right-box-body px-2 mt-2 text-center ">
+                                            <a href=" " class="link text-muted fs-6 "> لپ تاپ 15.6 اینچی لنوو مدل ideaPad L36-R16</a>
+                                        </div>
+                                        <div class="w-100 px-2">
+                                            <div class=" d-flex-c-b mt-2 ">
+                                                <span class="text-success fs-small"> 54,000,000 تومان</span>
+                                                <span class="text-warning fs-small"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item my-2">
+                                    <div class="box-widge rounded bg-wihte">
+                                        <div class="wnd-right-box-head px-4 rounded position-relative ">
+                                            <img src="img/product10.webp" class="img-fluid" alt=" ">
+                                        </div>
+                                        <div class="wnd-right-box-body px-2 mt-2 text-center ">
+                                            <a href=" " class="link text-muted fs-6 "> لپ تاپ 15.6 اینچی لنوو مدل ideaPad L36-R16</a>
+                                        </div>
+                                        <div class="w-100 px-2">
+                                            <div class=" d-flex-c-b mt-2 ">
+                                                <span class="text-success fs-small"> 54,000,000 تومان</span>
+                                                <span class="text-warning fs-small"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item my-2">
+                                    <div class="box-widge rounded bg-wihte">
+                                        <div class="wnd-right-box-head px-4 rounded position-relative ">
+                                            <img src="img/product4.webp" class="img-fluid" alt=" ">
+                                        </div>
+                                        <div class="wnd-right-box-body px-2 mt-2 text-center ">
+                                            <a href=" " class="link text-muted fs-6 "> لپ تاپ 15.6 اینچی لنوو مدل ideaPad L36-R16</a>
+                                        </div>
+                                        <div class="w-100 px-2">
+                                            <div class=" d-flex-c-b mt-2 ">
+                                                <span class="text-success fs-small"> 54,000,000 تومان</span>
+                                                <span class="text-warning fs-small"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item my-2">
+                                    <div class="box-widge rounded bg-wihte">
+                                        <div class="wnd-right-box-head px-4 rounded position-relative ">
+                                            <img src="img/product8.webp" class="img-fluid" alt=" ">
+                                        </div>
+                                        <div class="wnd-right-box-body px-2 mt-2 text-center ">
+                                            <a href=" " class="link text-muted fs-6 "> لپ تاپ 15.6 اینچی لنوو مدل ideaPad L36-R16</a>
+                                        </div>
+                                        <div class="w-100 px-2">
+                                            <div class=" d-flex-c-b mt-2 ">
+                                                <span class="text-success fs-small"> 54,000,000 تومان</span>
+                                                <span class="text-warning fs-small"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END SECTION -->
+{% endblock %}
