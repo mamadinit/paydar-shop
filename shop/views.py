@@ -33,3 +33,36 @@ class CartDetailView(LoginRequiredMixin, View):
     def get(self, request):
         cart = Cart(request)
         return render(request, 'shop/detail-cart.html', {'cart': cart})
+    
+
+
+
+# from django.views import View
+# from django.shortcuts import redirect
+# from django.utils import timezone
+# from django.contrib import messages
+# from django.utils.decorators import method_decorator
+# from django.views.decorators.http import require_POST
+# from .forms import CouponForm
+# from .models import Coupon, Order
+
+
+# class CouponApplyView(View):
+#     def post(self, request, order_id):
+#         now = timezone.now()
+#         form = CouponForm(request.POST)
+#         if form.is_valid():
+#             code = form.cleaned_data['code']
+#             try:
+#                 coupon = Coupon.objects.get(code__iexact=code, valid_from__lte=now, valid_to__gt=now, status=True)
+#             except Coupon.DoesNotExist:
+#                 messages.error(request, 'کد تخفیف معتبر نیست !', 'danger')
+#                 return redirect('orders:detail', order_id)
+#             order = Order.objects.get(id=order_id)
+#             order.discount = coupon.discount
+#             order.save()
+#             messages.success(request, 'کد تخفیف اعمال شد')
+#             return redirect('orders:detail', order_id)
+#         else:
+#             messages.error(request, 'دوباره امتحان کنید', 'danger')
+#             return redirect('orders:detail', order_id)

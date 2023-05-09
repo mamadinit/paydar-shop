@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 from ckeditor.fields import RichTextField
 
 # Create your models here.
@@ -12,9 +13,11 @@ class Attribute(models.Model):
         return self.title
 
 class Category(models.Model):
-    parent = models.ForeignKey('self', default=None, null=True, blank=True, on_delete=models.SET_NULL, related_name='children', verbose_name='زیردسته')
     title = models.CharField(max_length = 50, verbose_name = "عنوان دسته بندی")
     slug = models.SlugField(max_length = 100, unique = True, verbose_name = "اسلاگ")
+
+    def __str__(self):
+        return self.title 
 
 class Classification(models.Model):
     title = models.CharField(max_length = 50, verbose_name = "عنوان  طبقه بندی")
@@ -46,10 +49,11 @@ class Product(models.Model):
     inventory = models.BooleanField(default=True, verbose_name='موجودی در انبار')
     price = models.IntegerField(verbose_name='قیمت')
     images = models.ManyToManyField(Picture, verbose_name = "تصاویر", related_name="images")
-    category = models.ManyToManyField(Category, verbose_name = "دسته بندی", related_name="products")
+    category = models.OneToOneField(Category, null = True, verbose_name = "دسته بندی", related_name="products", on_delete=models.SET_NULL)
     classification = models.ManyToManyField(Classification, verbose_name = 'طبقه بندی', related_name="products")
     attribute = models.ManyToManyField(Attribute, verbose_name = "مشخصات", related_name="attributes")
-    processor_series = models.CharField(max_length=150, verbose_name='نام محصول')
+    brand = models.CharField(max_length=100, verbose_name='برند')
+    processor_series = models.CharField(max_length=150, verbose_name='نوع پردازنده')
     ram_memory = models.CharField(max_length=2, verbose_name='ظرفیت حافظه RAM')
     gpu_series = models.CharField(max_length=60, verbose_name='پردازنده گرافیکی')
     screen_size = models.CharField(max_length=10, verbose_name='اندازه صفحه نمایش')
@@ -62,3 +66,20 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title 
+    
+
+
+class Coupon(models.Model):
+    code = models.CharField(max_length=30, unique=True, verbose_name='کد تخفیف')
+    valid_from = models.DateTimeField(verbose_name='معتبر از')
+    valid_to = models.DateTimeField(verbose_name='معتبر تا')
+    discount = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)], verbose_name='مقدار تخفیف')
+    status = models.BooleanField(default=False, verbose_name='وضعیت')
+
+    class Meta:
+        verbose_name = "کد تخفیف"
+        verbose_name_plural = "کد های تخفیف" 
+
+    def __str__(self):
+        return self.code
+    
