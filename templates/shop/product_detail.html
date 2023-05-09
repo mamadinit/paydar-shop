@@ -40,8 +40,8 @@
                                     <span> کد کالا : {{ object.pk }} </span>
                                 </div>
                                 <div class="category">
-                                    <span class="text-muted"> دسته بندی : <a href="" class="text-danger"> {% for cat in  object.category.all %} {{cat.title}} {% endfor %} </a> </span>
-                                    <!-- <span class="text-muted border-start ps-2"> برند <a href="" class="text-danger"> اپل </a> </span> -->
+                                    <span class="text-muted"> دسته بندی : <a href="" class="text-danger"> {{ object.category }}</a> </span>
+                                    <span class="text-muted border-start ps-2"> برند <a href="" class="text-danger"> {{ object.brand }} </a> </span>
                                 </div>
                                 <div class="product-informations mt-3">
                                     <p class="text-muted mb-0"> مشخصات محصول </p>
