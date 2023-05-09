@@ -46,7 +46,8 @@ class Cart:
         return sum(int(item['price']) * item['quantity'] for item in self.cart.values())
 
     def get_total_number(self):
-        return len(self.cart.values())
+        return sum(item['quantity'] for item in self.cart.values())
+
 
     def clear(self):
         del self.session[CART_SESSION_ID]
