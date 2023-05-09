@@ -1,4 +1,118 @@
-{% for item in cart %}
-    {{ item.product  }}
-    {{ item.quantity  }}
-{% endfor %}    
+
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title%}سبد خرید{% endblock %}
+{% block main %}
+<section>
+    <div class="container-fluid shop mb-4">
+        <div class="row mx-lg-4 mx-0">
+            <div class="shop-head px-0">
+                <div class="row">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb pb-3 pt-4 mb-0 fs-small">
+                            <li class="breadcrumb-item text-muted"><a href="#">خانه</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">سبد خرید </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <div class="cart-body px-0">
+                <div class="row d-flex align-items-start justify-content-center flex-wrap mx-0">
+                    <div class="col-lg-8">
+                        {% if cart.get_total_number == 0 %}
+                            <div class="col-12 px-0 bg-light border-bottom bg-white border-top py-3 d-flex align-items-center justify-content-between">
+                                <span class="text-muted fs-small"> شما محصولی در سبد خرید خود ندارید </span>
+                                <a href="" class="btn btn-red px-3 py-1 rounded fs-small"> خرید از فروشگاه </a>
+                            </div>
+                        {% else %}
+                            <div class="row pe-0 pe-lg-4">
+                                <div class="col-12 px-0 bg-light border-bottom bg-white border-top py-3 d-flex align-items-center justify-content-start">
+                                    <div class="col-lg-1 col-2 d-flex justify-content-start">
+                                        <span class="fs-small text-muted"> حذف </span>
+                                    </div>
+                                    <div class="col-lg-3 col-2 d-flex justify-content-start cb-img">
+                                        <span class="fs-small text-muted"> تصویر کالا </span>
+                                    </div>
+                                    <div class="col-lg-5 col-3 d-flex justify-content-start ps-4">
+                                        <span class="fs-small text-muted"> نام کالا </span>
+                                    </div>
+                                    <div class="col-lg-1 col-2 d-flex justify-content-start">
+                                        <span class="fs-small text-muted"> تعداد </span>
+                                    </div>
+                                    <div class="col-lg-3 col-2 ps-4 d-flex justify-content-start">
+                                        <span class="fs-small text-muted"> قیمت  </span>
+                                    </div>
+                                </div>
+                                {% for item in cart %}
+                                    <div class="col-12 bg-light border-bottom d-flex flex-wrap pb-2 pb-lg-0 align-items-center justify-content-start">
+                                        <div class="col-lg-1 col-1 d-flex justify-content-start">
+                                            <a href="" class="link text-muted ps-3"><i class="fas fa-times"></i></a>
+                                        </div>
+                                        <div class="col-lg-3 col-3 d-flex justify-content-start cb-img py-2">
+                                            <img src="{{ item.product.images.all.first.image.url }}" class="w-100 rounded" alt="">
+                                        </div>
+                                        <div class="col-lg-5 col-8 d-flex justify-content-start ps-4">
+                                            <span class="fs-small text-muted"> لپ تاپ 15.6 اینچی لنوو مدل ideaPad L36-R16 </span>
+                                        </div>
+                                        <div class="col-lg-1 col-6 d-flex justify-content-start d-flex justify-content-start">
+                                            <div class="form-group">
+                                                <a class="form-control">{{ item.quantity }}</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-6 ps-4 d-flex justify-content-start">
+                                            <span class="text-muted fs-smll"> {{ item.product.price|intcomma }} تومان</span>
+                                        </div>
+                                    </div>
+                                {% endfor %}    
+
+                                
+                                <div class="border col-12 py-3 rounded mt-3 d-flex-c-c">
+                                    <div class="row col-12 d-flex-c-c px-0 btn-up-code">
+                                        <div class="col-lg-6 col-12 px-0">
+                                            <form action="">
+                                                <div class="form-group buc-inp">
+                                                    <input type="text" class="form-control fw-bold fs-small py-2 " placeholder="کد تخفیف">
+                                                </div>
+                                                <button class="btn fw-bold fs-small rounded px-2 bg-red text-light py-2 buc-right"> اعمال کد تخفیف </button>
+                                            </form>
+                                        </div>
+                                        <div class="col-lg-6 col-12 d-flex align-items-center justify-content-end px-0">
+                                            <button class="btn bg-red text-light rounded fs-small px-2 py-2 buc-left"> بروزرسانی سبد خرید </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-lg-4 border px-4 mt-3 mt-lg-0 py-0">
+                        <div class="row d-flex-c-c px-2 flex-column">
+                            <div class="box-cart col-12">
+                                <span class="text-muted fs-small">  <i class="far fs-6 pe-1 fa-box-open"></i> تعداد کالا  </span>
+                                <span class="text-muted fs-small"> {{ cart.get_total_number }} عدد</span>
+                            </div>
+                            <div class="box-cart col-12">
+                                <span class="text-muted fs-small"><i class="far fs-6 pe-1 fa-usd-circle"></i> مقدار تخفیف</span>
+                                <span class="text-muted fs-small"> 0 تومان </span>
+                            </div>
+                            <div class="box-cart text-muted">
+                                <i class="far fa-info-circle pe-3"></i><span> هزینه ارسال براساس آدرس، زمان تحویل، وزن و حجم مرسوله شما محاسبه می‌شود </span>
+                            </div>
+                            <div class="box-price justify-content-betwwen text-muted w-100">
+                                <div>
+                                    <i class="fas fa-sack-dollar text-warning pe-3 fs-small"></i> <span> مبلغ قابل پرداخت </span>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-end flex-column">
+                                    <div class="text-muted w-100 py-0"> <span class="fs-5 yekanB">{{ cart.get_total_price|intcomma }}</span> <span>تومان</span></div>
+                                </div>
+                            </div>
+                            <button class="w-100 btn btn-red rounded py-2 text-light fs-small fw-bold mt-3 mb-3"> ادامه فرایند خرید </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END SECTION -->
+{% endblock %}
