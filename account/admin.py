@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext, gettext_lazy as _
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-from .models import User
+from .models import User, Address
 
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
@@ -12,7 +12,7 @@ class CustomUserAdmin(UserAdmin):
     list_filter = ('phone', 'is_staff', 'first_name',)
     fieldsets = (
         (None, {'fields': ('phone', 'password')}),
-        (_('Personal info'), {'fields': ('first_name', 'last_name', 'email')}),
+        (_('Personal info'), {'fields': ('first_name', 'last_name', 'email', 'bank_card')}),
         (_('Permissions'), {
             'fields': ('is_active', 'is_verified', 'is_staff', 'is_superuser', 'groups', 'user_permissions'),
         }),
@@ -28,3 +28,4 @@ class CustomUserAdmin(UserAdmin):
     ordering = ('phone',)
 
 admin.site.register(User, CustomUserAdmin)
+admin.site.register(Address)
