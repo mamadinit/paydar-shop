@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'shop.apps.ShopConfig',
     'blog.apps.BlogConfig',
+    'dashboard.apps.DashboardConfig',
     
     # lib app
     'widget_tweaks',
@@ -150,7 +151,7 @@ LOGIN_URL = 'account:login'
 
 LOGOUT_REDIRECT_URL = "login"
 
-# LOGIN_REDIRECT_URL = 'account:personal-info'
+LOGIN_REDIRECT_URL = 'dashboard:dashboard-info'
 
 AUTHENTICATION_BACKENDS = [
     'account.backend.CustomBackend',
