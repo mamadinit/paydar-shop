@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title%}اطلاعات حساب کاربری{% endblock %}
+{% block main %}
+
+<section>
+    <div class="container-fluid blog mb-3">
+        <div class="row mx-lg-4 mx-0">
+            <div class="blog-head px-0">
+                <div class="row">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb pb-3 pt-4 mb-0 fs-small">
+                            <li class="breadcrumb-item text-muted"><a href="#">خانه</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"> تایید اطلاعات </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            {% include 'message.html' %}
+            <div class="col-12 px-0">
+                <div class="row d-flex align-items-start flex-wrap">
+                    {% include 'dashboard/sidebar.html' %}
+                    <div class="col-lg-9 ps-lg-4 mt-3 mt-lg-0">
+                        <div class="w-col-12 border bg-light rounded px-3 pt-2">
+                            <div class="d-flex-c-b py-2 mb-2">
+                                <span class="fs-small text-dark">  اطلاعات کاربر  </span>
+                            </div>
+                            <div class="col-12 px-0 fs-small bg-wihte py-3 px-3 rounded">
+                                <form method="post">{% csrf_token %}
+                                    <div class="mb-3">
+                                        {% render_field form.first_name class="form-control fs-m"%}
+                                    </div>
+                                    <div class="mb-3">
+                                        {% render_field form.last_name class="form-control fs-m"%}
+                                    </div>
+                                    <div class="mb-3">
+                                        {% render_field form.phone class="form-control fs-m"%}
+                                        <div id="numberHelp" class="form-text">شماره موبایل قابل ویرایش نیست . </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        {% render_field form.email class="form-control fs-m"%}
+                                    </div>
+                                    <div class="mb-3">
+                                        {% render_field form.bank_card class="form-control fs-m" placeholder='شماره کارت' %}
+                                        <div id="cashbackHelp" class="form-text">در صورت وجود داشتن کالای مرجوعی ، هزینه آن را به این شماره کارت واریز خواهیم کرد .</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div id="cashbackHelp" class="form-text">تغییر رمز عبور</div>
+                                    </div>
+                                    <button type="submit"  class="btn bg-red text-light rounded px-3 py-2 fs-m"> ویرایش اطلاعات </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

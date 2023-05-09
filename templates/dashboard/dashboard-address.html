@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title%}آدرس ها{% endblock %}
+{% block main %}
+<section>
+    <div class="container-fluid blog mb-3">
+        <div class="row mx-lg-4 mx-0">
+            <div class="blog-head px-0">
+                <div class="row">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb pb-3 pt-4 mb-0 fs-small">
+                            <li class="breadcrumb-item text-muted"><a href="#">خانه</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"> آدرس ها </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            {% include 'message.html' %}
+            <div class="col-12 px-0">
+                <div class="row d-flex align-items-start flex-wrap">
+                    {% include 'dashboard/sidebar.html' %}
+                    <div class="col-lg-9 ps-lg-4 mt-3 mt-lg-0">
+                        <div class="w-col-12 border bg-light rounded px-3 pt-2">
+                            {% if not request.user.address %}
+                                <div class="d-flex-c-b py-2 mb-2">
+                                    <span class="fs-small text-dark"> آدرس ها </span> <button class="fw-bold bg-wihte px-2 py-1 fs-m text-muted" data-bs-toggle="modal" data-bs-target="#addaddrressesprofile"> ثبت آدرس جدید </button>
+                                </div>
+                            {% else %}    
+                                <div class="col-12 d-flex flex-column px-0 bg-wihte py-3 mb-3 px-2 fs-small">
+                                    <div class="mb-3 border-bottom pb-3">
+                                        آدرس : <span class="text-muted">{{ request.user.address.get_full_address }}</span>
+                                    </div>
+                                    <div>
+                                        کد پستی : <span class="text-muted border-end pe-3 me-3"> {{ request.user.address.postal_code }} </span> 
+                                        نام گیرنده : <span class="text-muted border-end pe-3 me-3">{{ request.user.address.transferee_name }} </span>                                        
+                                        <button class="btn btn-sm bg-red fs-m py-1 px-2 rounded text-light" data-bs-toggle="modal" data-bs-target="#editeaddrressesprofile"> ویرایش آدرس </button>
+                                    </div>
+                                </div>
+                            {% endif %}    
+                                {% if request.user.address %}
+                                    <div class="modal fade" id="editeaddrressesprofile" tabindex="-1" aria-labelledby="editeaddrressesprofile" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="editeAddres"> ویرایش آدرس گیرنده </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form method="post">{% csrf_token %}
+                                                        <div class="mb-3">
+                                                            <label for="recipient-name" class="col-form-label">استان:</label>
+                                                            <!-- <select class="form-select" aria-label="Default select example">
+                                                                <option value="1">اردبیل</option>
+                                                                <option value="2">تهران</option>
+                                                                <option value="3">اصفحان</option>
+                                                            </select> -->
+                                                            {% render_field form.province class="form-select" aria-label="Default select example" %}
+
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="recipient-name" class="col-form-label">شهر :</label>
+                                                            {% render_field form.city class="form-control" %}
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="recipient-name" class="col-form-label">آدرس :</label>
+                                                            <!-- <textarea name="" id="" cols="30" rows="2" class="form-control"></textarea> -->
+                                                            {% render_field form.address class="form-control" cols="30" rows="3" %}
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="recipient-name" class="col-form-label">نام گیرنده :</label>
+                                                            <!-- <input type="text" class="form-control"> -->
+                                                            {% render_field form.transferee_name class="form-control" %}
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="recipient-name" class="col-form-label">کد پستی:</label>
+                                                            <!-- <input type="text" class="form-control"> -->
+                                                            {% render_field form.postal_code class="form-control" %}
+                                                        </div>
+                                                    
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn bg-red fs-m px-2 py-1 text-light rounded fs-small" data-bs-dismiss="modal">بستن</button>
+                                                    <button type="submit" class="btn bg-down fs-m px-2 py-1 text-light rounded fs-small"> ویرایش آدرس پستی </button>
+                                                </div>
+                                            </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                <div class="modal fade" id="addaddrressesprofile" tabindex="-1" aria-labelledby="addaddrressesprofile" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editeAddres"> افزودن آدرس گیرنده جدید </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form method="post">{% csrf_token %}
+                                                    <div class="mb-3">
+                                                        <label for="recipient-name" class="col-form-label">استان:</label>
+                                                        {% render_field form.province class="form-select" aria-label="Default select example" %}
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="recipient-name" class="col-form-label">شهر :</label>
+                                                        {% render_field form.city class="form-control" %}
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="recipient-name" class="col-form-label">آدرس :</label>
+                                                        <!-- <textarea name="" id="" cols="30" rows="2" class="form-control"></textarea> -->
+                                                        {% render_field form.address class="form-control" cols="30" rows="3" %}
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="recipient-name" class="col-form-label">نام گیرنده :</label>
+                                                        <!-- <input type="text" class="form-control"> -->
+                                                        {% render_field form.transferee_name class="form-control" %}
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="recipient-name" class="col-form-label">کد پستی:</label>
+                                                        <!-- <input type="text" class="form-control"> -->
+                                                        {% render_field form.postal_code class="form-control" %}
+                                                    </div>
+                                                
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn bg-red fs-m px-2 py-1 text-light rounded fs-small" data-bs-dismiss="modal">بستن</button>
+                                                <button type="submit" class="btn bg-down fs-m px-2 py-1 text-light rounded fs-small"> افزودن آدرس پستی </button>
+                                            </div>
+                                        </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

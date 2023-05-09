@@ -1,0 +1,41 @@
+{% load static %}
+<div class="col-lg-3 d-flex align-items-center justify-content-start flex-wrap">
+    <div class="border rounded w-100 px-2 pt-2">
+        <div class="w-100 d-flex border-bottom pb-2 mb-2">
+            <img src="{% static 'img/profile-456.png' %}" class="profile-user-img" alt="">
+            <div class="d-flex flex-column ps-3 pt-1">
+                <span class="fs-small text-muted">{{ request.user.get_full_name }} </span>
+                <span class="profile-user-number pt-1"> {{ request.user.phone }} </span>
+            </div>
+        </div>
+        <!-- <div class="w-100 d-flex align-items-center justify-content-between border-bottom pb-2">
+            <span class="fs-m text-muted"><i class="far fa-wallet top-2 pe-1"></i> موجودی کیف پول</span>
+            <span class="profile-user-number pt-1"> 2,000,000 تومان </span>
+        </div> -->
+        <div class="w-100 d-flex align-items-center justify-content-between py-2">
+            <span class="fs-m text-muted"><i class="far fa-calendar-alt top-2 pe-1"></i> تاریخ عضویت </span>
+            <span class="profile-user-number pt-1"> {{ request.user.jpublish }} </span>
+        </div>
+    </div>
+    <div class="border rounded w-100 px-2 mt-3 pt-2">
+        <ul class="nav flex-column mx-0 fs-small text-muted">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'dashboard:dashboard-info' %}"><i class="far fa-user top-2 pe-1"></i> اطلاعات حساب کاربری </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="far fa-shopping-basket top-2 pe-1"></i> سفارشات  </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href=""><i class="far fa-comment-alt-lines top-2 pe-1"></i> نظرات شما </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'dashboard:dashboard-address' %}"><i class="far fa-map-marker-alt top-2 pe-1"></i> آدرس ها </a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" href=""><i class="far fa-wallet top-2 pe-1"></i> کیف پول </a>
+            </li> -->
+            
+            <button class="btn bg-red text-light fw-bold rounded fs-m py-2 mt-2 mb-3"><i class="far fa-sign-out-alt top-2 pe-1"></i> خروج از حساب کاربری </button>
+        </ul>
+    </div>
+</div>
