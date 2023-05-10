@@ -54,7 +54,7 @@ class User(AbstractUser):
         return jalali_converter(self.date_joined)
 
     def __str__(self):
-        return f'user is {self.phone}'
+        return f'{self.first_name} {self.last_name}'
 
 post_save.connect(customuser_created, sender=User)
 
