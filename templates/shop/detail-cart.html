@@ -86,7 +86,7 @@
                                     <div class="text-muted w-100 py-0"> <span class="fs-5 yekanB">{{ cart.get_total_price|intcomma }}</span> <span>تومان</span></div>
                                 </div>
                             </div>
-                            <button class="w-100 btn btn-red rounded py-2 text-light fs-small fw-bold mt-3 mb-3"> ادامه فرایند خرید </button>
+                            <a href="{% url 'shop:order_create' %}"  class="w-100 btn btn-red rounded py-2 text-light fs-small fw-bold mt-3 mb-3"> ادامه فرایند خرید </a>
                         </div>
                     </div>
                 </div>
