@@ -2,7 +2,13 @@ from django.contrib import admin
 from django.urls import path
 from .views import ProductDetailView
 
-from .views import CartAddItemView, CartDetailView, CartRemoveItemView
+from .views import (
+    CartAddItemView, 
+    CartDetailView, 
+    CartRemoveItemView, 
+    OrderCreateView, 
+    OrderDetailView,
+    CouponApplyView,)
 
 app_name = 'shop'
 
@@ -12,6 +18,9 @@ urlpatterns = [
     path('cart/', CartDetailView.as_view(), name='cart-detail'),
     path('cart/add/<product_id>/', CartAddItemView.as_view(), name='cart_add'),
     path('cart/remove/<int:product_id>/', CartRemoveItemView.as_view(), name='cart_remove'),
+    path('order/create/', OrderCreateView.as_view(), name='order_create'),
+    path('order/<int:pk>/', OrderDetailView.as_view(), name='order_detail'),
+    path('coupon/<int:order_id>', CouponApplyView.as_view(), name='coupon_apply'),
 ]
 
 
