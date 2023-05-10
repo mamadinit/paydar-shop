@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load widget_tweaks %}
+{% block title%} ارسال اطلاعات {% endblock %}
+{% block main %}
+<section>
+    <div class="container-fluid checkout mb-4">
+        <div class="row mx-lg-4 mx-0">
+            <div class="shop-head px-0">
+                <div class="row">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb pb-3 pt-4 mb-0 fs-small">
+                            <li class="breadcrumb-item text-muted"><a href="#">خانه</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"> ارسال اطلاعات </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            {% include 'message.html' %}
+            <div class="cart-body px-0">
+                <div class="row d-flex align-items-start justify-content-center flex-wrap mx-0">
+                    <div class="col-lg-8">
+                        <div class="row pe-0 pe-lg-4">
+                            <div class="col-12 px-0 bg-light border-bottom bg-white border-top py-3 d-flex align-items-center justify-content-start">
+                                <div class="col-6 d-flex justify-content-start">
+                                    <span class="fs-small text-muted"> انتخاب آدرس تحویل سفارش</span>
+                                </div>
+                                <div class="col-6 d-flex justify-content-end">
+                                    <a href="{% url 'dashboard:dashboard-address' %}" class="btn btn-sm bg-red text-light mb-0"> ویرایش آدرس </a>
+                                </div>
+                            </div>
+                            <div class="col-12 bg-light border-bottom d-flex flex-wrap pb-2 pb-lg-0 align-items-center justify-content-start">
+                                <div class="col-12 col-lg-4 d-flex justify-content-start py-3">
+                                    <span class="fs-small text-muted">گیرنده : {{ object.delivery_address.transferee_name }} </span>
+                                </div>
+                                <div class="col-12 col-lg-4 d-flex justify-content-start py-3">
+                                    <span class="fs-small text-muted">شماره تماس : {{ object.delivery_address.user.phone }}</span>
+                                </div>
+                                <div class="col-12 col-lg-4 d-flex justify-content-start py-3">
+                                    <span class="fs-small text-muted">کد پستی : {{ object.delivery_address.postal_code }}</span>
+                                </div>
+                                <div class="col-12 col-lg-12 d-flex justify-content-start py-3 pt-0">
+                                    <span class="fs-small text-muted">{{ object.delivery_address.get_full_address }}</span>
+                                </div>
+                            </div>
+                            <div class="border col-12 py-3 rounded mt-3 d-flex-c-c">
+                                <div class="row col-12 d-flex-c-c px-0 btn-up-code">
+                                    <div class="col-lg-6 col-12 px-0">
+                                        <form action="{% url 'shop:coupon_apply' order.id %}" method="post">{% csrf_token %}
+                                            <div class="form-group buc-inp">
+                                                <!-- <input type="text" class="form-control fw-bold fs-small py-2 " placeholder="کد تخفیف"> -->
+                                                {% render_field form.code class="form-control fw-bold fs-small py-2" placeholder="کد تخفیف" %}
+                                            </div>
+                                            <button type="submit" class="btn fw-bold fs-small rounded px-2 bg-red text-light py-2 buc-right"> اعمال کد تخفیف </button>
+                                        </form>
+                                    </div>
+                                    <div class="col-lg-6 col-12 d-flex align-items-center justify-content-end px-0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 border px-4 mt-3 mt-lg-0 py-0">
+                        <div class="row d-flex-c-c px-2 flex-column">
+                            <div class="box-cart col-12">
+                                <span class="text-muted fs-small">  <i class="far fs-6 pe-1 fa-box-open"></i> تعداد کالا </span>
+                                <span class="text-muted fs-small"> {{ object.items.all.count }} عدد</span>
+                            </div>
+                            <div class="box-cart col-12">
+                                <span class="text-muted fs-small"><i class="far fs-6 pe-1 fa-usd-circle"></i> قیمت کالاها </span>
+                                <span class="text-muted fs-small"> {{ object.get_total_price|intcomma }} تومان </span>
+                            </div>
+
+                            <div class="box-cart text-muted">
+                                <span class="text-muted fs-small"><i class="far fa-info-circle pe-3"></i>مبلغ تخفیف</span>
+                                {% if object.get_total_discount == 0 %}
+                                    <span class="text-muted fs-small">این سفارش شامل تخفیف نیست</span>
+                                {% else %}
+                                    <span class="text-muted fs-small"> {{ object.get_total_discount|intcomma }} تومان </span>
+                                {% endif %}    
+                            </div>
+                            <div class="box-cart col-12">
+                                <span class="text-muted fs-small"><i class="far fs-6 pe-1 fa-usd-circle"></i> هزینه ارسال کالا </span>
+                                <span class="text-muted bg-warning px-2 rounded py-1 fs-small"> 45800 تومان </span>
+                                <!-- <span class="text-light bg-down px-2 rounded py-1 fs-small"> رایگان </span> -->
+                            </div>
+                            <div class="box-price justify-content-betwwen text-muted w-100">
+                                <div>
+                                    <i class="fas fa-sack-dollar text-warning pe-3 fs-small"></i> <span> مبلغ قابل پرداخت </span>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-end flex-column">
+                                    <div class="text-muted w-100 py-0"> <span class="fs-5 yekanB">{{ object.get_total_price_by_discount|intcomma }}</span> <span>تومان</span></div>
+                                </div>
+                            </div>
+                            <button class="w-100 btn bg-red rounded py-2 text-light fs-small fw-bold mt-3 mb-3"> ادامه فرایند و پرداخت  </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
