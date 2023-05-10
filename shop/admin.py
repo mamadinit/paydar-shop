@@ -1,7 +1,14 @@
 from django.contrib import admin
-from .models import Product, Picture, Category, Classification, Attribute, Coupon
+from .models import (
+    Product,
+    Picture,
+    Category,
+    Classification, 
+    Attribute, 
+    Coupon,
+    Order,
+    OrderItem,)
 
-# Register your models here.
 
 class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug":("title",)}
@@ -18,3 +25,5 @@ admin.site.register(Picture)
 admin.site.register(Classification)
 admin.site.register(Attribute)
 admin.site.register(Coupon)
+admin.site.register(Order)
+admin.site.register(OrderItem)
