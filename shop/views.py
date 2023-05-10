@@ -19,7 +19,7 @@ class ProductDetailView(DetailView):
         return product
     
 
-class CartAddView(LoginRequiredMixin, View):
+class CartAddItemView(LoginRequiredMixin, View):
     def post(self, request, product_id):
         cart = Cart(request)
         product = get_object_or_404(Product, id=product_id)
@@ -35,6 +35,13 @@ class CartDetailView(LoginRequiredMixin, View):
         return render(request, 'shop/detail-cart.html', {'cart': cart})
     
 
+class CartRemoveItemView(View):
+    def get(self, request, product_id):
+        cart = Cart(request)
+        product = get_object_or_404(Product, id=product_id)
+        print(product)
+        cart.remove(product)
+        return redirect('shop:cart-detail')
 
 
 # from django.views import View
