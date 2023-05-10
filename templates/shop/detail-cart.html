@@ -48,13 +48,13 @@
                                 {% for item in cart %}
                                     <div class="col-12 bg-light border-bottom d-flex flex-wrap pb-2 pb-lg-0 align-items-center justify-content-start">
                                         <div class="col-lg-1 col-1 d-flex justify-content-start">
-                                            <a href="" class="link text-muted ps-3"><i class="fas fa-times"></i></a>
+                                            <a href="{% url 'shop:cart_remove' item.product.id %}" class="link text-muted ps-3"><i class="fas fa-times"></i></a>
                                         </div>
                                         <div class="col-lg-3 col-3 d-flex justify-content-start cb-img py-2">
                                             <img src="{{ item.product.images.all.first.image.url }}" class="w-100 rounded" alt="">
                                         </div>
                                         <div class="col-lg-5 col-8 d-flex justify-content-start ps-4">
-                                            <span class="fs-small text-muted"> لپ تاپ 15.6 اینچی لنوو مدل ideaPad L36-R16 </span>
+                                            <a href="{% url 'shop:product-detail' item.product.slug %}" class="fs-small text-muted"> لپ تاپ 15.6 اینچی لنوو مدل ideaPad L36-R16 </a>
                                         </div>
                                         <div class="col-lg-1 col-6 d-flex justify-content-start d-flex justify-content-start">
                                             <div class="form-group">

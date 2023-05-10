@@ -78,11 +78,8 @@
                         </li>
                         <li class="nav-item me-3">
                             <div class="btn-group">
-                                <button type="" class="btn shadow-cm px-2 bg-wihte rounded py-2" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                                    <div class="num-lock">
-                                        <span class="position-relative nl-number">8</span>
-                                    </div>
-                                    <i class="fal fa-shopping-bag fs-4 px-1"></i>
+                                <button type="" class="btn shadow-cm px-2 bg-wihte rounded py-2" >
+                                    <a href="{% url 'shop:cart-detail' %}" class="fal fa-shopping-bag fs-4 px-1"></a>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-lg-end">
                                     <div class="btn-group text-center">
