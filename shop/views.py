@@ -3,9 +3,13 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView
 from django.views import View
-from .models import Product
+import datetime
+from django.utils import timezone
+from django.contrib import messages
+from .models import Product, Order, OrderItem, Coupon
 from .utils.cart import Cart
-from .forms import Add2CartForm
+from .forms import Add2CartForm, CouponForm
+from account.models import Address
 
 # Create your views here.
 
@@ -44,32 +48,62 @@ class CartRemoveItemView(View):
         return redirect('shop:cart-detail')
 
 
-# from django.views import View
-# from django.shortcuts import redirect
-# from django.utils import timezone
-# from django.contrib import messages
-# from django.utils.decorators import method_decorator
-# from django.views.decorators.http import require_POST
-# from .forms import CouponForm
-# from .models import Coupon, Order
+class OrderDetailView(DetailView):
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        product = get_object_or_404(Order, pk=pk)
+        return product
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = CouponForm
+        return context
+
+class OrderCreateView(View):
+    def get(self, request):
+        print("on OrderCreateView")
+        cart = Cart(request)
+        delivery_date = datetime.datetime.now() + datetime.timedelta(days=7)
+        try:
+            order = Order.objects.get(user=request.user, status='awaiting_payment')
+            messages.success(request, 'شما یک فاکتور پرداخت نشده دارید لطفا ابتدا پرداخت کنید ', 'warning')
+            return redirect('shop:order_detail', order.id)
+        except Order.DoesNotExist:
+            if cart.get_total_number() == 0:
+                messages.success(request, 'سبد خرید خالی است !', 'warning')
+                return redirect('shop:cart-detail')
+            else:
+                try:
+                    address = Address.objects.get(user=request.user)
+                    new_order = Order.objects.create(user=request.user,
+                                                    delivery_date=delivery_date, delivery_address=address)
+                    for item in cart:
+                        OrderItem.objects.create(order=new_order, product=item['product'], price=item['price'], quantity=item['quantity'])
+                    cart.clear() 
+                    messages.success(request, f'سفارش {new_order.id} با موفقیت ایجاد شد .', 'info')
+                    return redirect('shop:order_detail', new_order.id)
+                
+                except Address.DoesNotExist:
+                    messages.success(request, 'لطفا برای تکمیل سفارش آدرس  وارد کنید .', 'warning')
+                    return redirect('address:address-create')
 
 
-# class CouponApplyView(View):
-#     def post(self, request, order_id):
-#         now = timezone.now()
-#         form = CouponForm(request.POST)
-#         if form.is_valid():
-#             code = form.cleaned_data['code']
-#             try:
-#                 coupon = Coupon.objects.get(code__iexact=code, valid_from__lte=now, valid_to__gt=now, status=True)
-#             except Coupon.DoesNotExist:
-#                 messages.error(request, 'کد تخفیف معتبر نیست !', 'danger')
-#                 return redirect('orders:detail', order_id)
-#             order = Order.objects.get(id=order_id)
-#             order.discount = coupon.discount
-#             order.save()
-#             messages.success(request, 'کد تخفیف اعمال شد')
-#             return redirect('orders:detail', order_id)
-#         else:
-#             messages.error(request, 'دوباره امتحان کنید', 'danger')
-#             return redirect('orders:detail', order_id)
+class CouponApplyView(View):
+    def post(self, request, order_id):
+        now = timezone.now()
+        form = CouponForm(request.POST)
+
+        if form.is_valid():
+            code = form.cleaned_data['code']
+            try:
+                coupon = Coupon.objects.get(code__iexact=code, valid_from__lte=now, valid_to__gt=now, status=True)
+            except Coupon.DoesNotExist:
+                messages.error(request, 'کد تخفیف معتبر نیست !', 'danger')
+                return redirect('shop:order_detail', order_id)
+            order = Order.objects.get(id=order_id)
+            order.discount = coupon.discount
+            order.save()
+            messages.error(request, 'کد تخفیف اعمال شد', 'success')
+            return redirect('shop:order_detail', order_id)
+        else:
+            messages.error(request, 'دوباره امتحان کنید', 'danger')
+            return redirect('shop:order_detail', order_id)
