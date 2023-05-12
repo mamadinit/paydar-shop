@@ -1,11 +1,14 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin 
 from django.contrib.messages.views import SuccessMessageMixin
 from account.models import User, Address
 from account.forms import AddressUpdateForm
+from shop.models import Order
+from comment.models import Comment
 from .forms import DashboardInfoForm
+from comment.forms import CommentUpdateForm
 
 # Create your views here.
 
@@ -32,7 +35,7 @@ class DashboardInfoView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         return kwargs
 
 
-class AddressUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class DashboardAddressView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Address
     template_name = 'dashboard/dashboard-address.html'
     form_class = AddressUpdateForm
@@ -46,3 +49,19 @@ class AddressUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     def form_valid(self, form):
             form.instance.user = self.request.user
             return super().form_valid(form)
+    
+
+class DashboardOrderView(LoginRequiredMixin, ListView):
+    template_name = 'dashboard/dashboard-orders.html'
+
+    def get_queryset(self):
+        return Order.objects.get_orders_list(user=self.request.user)
+    
+                                        
+
+
+class DashboardCommentView(LoginRequiredMixin, ListView):
+    template_name = 'dashboard/dashboard-comments.html'
+
+    def get_queryset(self):
+        return Comment.objects.filter(user=self.request.user)
