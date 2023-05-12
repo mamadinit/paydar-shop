@@ -7,9 +7,11 @@ import datetime
 from django.utils import timezone
 from django.contrib import messages
 from .models import Product, Order, OrderItem, Coupon
+from comment.models import Comment
 from .utils.cart import Cart
 from .forms import Add2CartForm, CouponForm
 from account.models import Address
+from comment.forms import CommentCreateForm
 
 # Create your views here.
 
@@ -19,8 +21,18 @@ class ProductDetailView(DetailView):
     def get_object(self):
         slug = self.kwargs.get('slug')
         product = get_object_or_404(Product, slug=slug)
-
+        
         return product
+    
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        slug = self.kwargs.get('slug')
+        product = get_object_or_404(Product, slug=slug)
+        context['comments'] = Comment.objects.filter(product=product, status='confirmed')
+        context['form'] = CommentCreateForm()
+        return context
+    
+	
     
 
 class CartAddItemView(LoginRequiredMixin, View):
