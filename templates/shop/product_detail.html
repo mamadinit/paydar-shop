@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load humanize %}
+{% load widget_tweaks %}
 {% block title%}{{ object.title }}{% endblock %}
 {% block main %}
 <section>
@@ -17,6 +18,7 @@
                     </nav>
                 </div>
             </div>
+            {% include 'message.html' %}
             <div class="product-body px-0 mb-4">
                 <div class="row d-flex align-items-start">
                     <div class="col-lg-4 pb-right px-0 py-2 position-relative border-end">
@@ -190,71 +192,45 @@
                                 <div class="row">
                                     <div class="col-12 commemts-head border-bottom pb-2 d-flex-c-c flex-wrap px-4">
                                         <div class="col-lg-6 col-12 pe-lg-5">
-                                            <!-- <span class="text-warning"> لطفا برای ثبت نظر ابتدا وارد حساب کاربری خود شوید </span> -->
-                                            <form action="" method="get">
-                                                <div class="form-group">
-                                                    <textarea name="" class="form-control fw-bold fs-small pt-3" id="" cols="6" rows="6" placeholder="نظر یا پرسش خود را مطرح کنید ..."></textarea>
-                                                </div>
-                                                <button class="btn bg-red rounded px-3 py-2 text-light mt-2"> ثبت نظر </button>
-                                            </form>
+                                            {% if user.is_authenticated %}
+                                                <form action="{% url 'comment:comment-create' object.slug %}" method="post">{% csrf_token %}
+                                                    <div class="form-group">
+                                                        {% render_field form.content class="form-control fw-bold fs-small pt-3" cols="6" rows="6" placeholder="نظر یا پرسش خود را مطرح کنید ..." %}
+                                                    </div>
+                                                    <button type="submit" class="btn bg-red rounded px-3 py-2 text-light mt-2"> ثبت نظر </button>
+                                                </form>
+                                            {% else %}    
+                                                <span class="text-warning"> لطفا برای ثبت نظر ابتدا وارد حساب کاربری خود شوید </span>
+                                            {% endif %}
                                         </div>
                                         <div class="col-lg-6 col-12 pb-3 pb-lg-5 mt-2 mt-lg-0">
-                                            <p class="mb-2 text-dark"> نظرات و پرسش و پاسخ </p>
-                                            <span class="text-muted"> برای ثبت نظر، لازم است ابتدا وارد حساب کاربری خود شوید. اگر این محصول را قبلا از دیجی‌کالا خریده باشید، نظر شما به عنوان مالک محصول ثبت خواهد شد. </span>
                                         </div>
                                     </div>
-                                    <div class="col-12 commemts-body pb-2 d-flex-c-c mt-4 px-0">
-                                        <div class="col-lg-12 cm-card bg-light py-3">
-                                            <div class="cm-card-head d-flex-c-b px-3">
-                                                <div class="d-flex-c-b flex-wrap w-100">
-                                                    <div class="d-flex justify-content-start col-12 col-lg-6">
-                                                        <img src="{% static 'img/fc377d0cd92124769962556a3bcfb094.jpg' %}" class="rounded-circle" alt="">
-                                                        <div class="ms-3">
-                                                            <span class="text-muted mb-1 d-block"> وصال علی زاده </span>
-                                                            <span class="text-muted"> در تاریخ : 1401/04/24 </span>
-                                                            <div class="text-warning mt-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="d-flex justify-content-end col-12 col-lg-6">
-                                                        <div class="text-muted px-3 rounded my-1 text-light fs-small py-1"> خرید این محصول را پیشنهاد میکنم </div>
-                                                        <button class="btn btn-sm bg-red text-light px-2"> پاسخ </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="cm-card-body d-flex-c-b px-3">
-                                                <div class="d-flex-c-b w-100">
-                                                    <p class="mb-0 text-muted mt-2">
-                                                        پاسخ فروشنده : حسن لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای
-                                                        کاربردی می باشد.</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-10 cm-card bg-wihte mt-3 mx-auto py-3">
+                                    {% for comment in comments %}
+                                        <div class="col-12 commemts-body pb-2 d-flex-c-c mt-4 px-0">
+                                            <div class="col-lg-12 cm-card bg-light py-3">
                                                 <div class="cm-card-head d-flex-c-b px-3">
                                                     <div class="d-flex-c-b flex-wrap w-100">
                                                         <div class="d-flex justify-content-start col-12 col-lg-6">
-                                                            <img src="{% static 'img/fc377d0cd92124769962556a3bcfb094.jpg' %}   " class="rounded-circle" alt="">
+                                                            <img src="{% static 'img/fc377d0cd92124769962556a3bcfb094.jpg' %}" class="rounded-circle" alt="">
                                                             <div class="ms-3">
-                                                                <span class="text-muted mb-1 d-block"> وصال علی زاده </span>
-                                                                <span class="text-muted"> در تاریخ : 1401/04/24 </span>
-                                                                <div class="text-warning mt-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                                                <span class="text-muted mb-1 d-block">{{ comment.user.get_full_name }}</span>
+                                                                <span class="text-muted"> در تاریخ : {{ comment.jpublish }} </span>
+                                                                <!-- <div class="text-warning mt-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div> -->
                                                             </div>
-                                                        </div>
-                                                        <div class="d-flex justify-content-end col-12 col-lg-6">
-                                                            <div class="text-muted px-3 rounded my-1 text-light fs-small py-1"> خرید این محصول را پیشنهاد میکنم </div>
-                                                            <button class="btn btn-sm bg-red text-light px-2"> پاسخ </button>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="cm-card-body d-flex-c-b px-3">
                                                     <div class="d-flex-c-b w-100">
-                                                        <p class="mb-0 text-muted mt-2">
-                                                            پاسخ فروشنده : حسن لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای
-                                                            کاربردی می باشد.</p>
+                                                        <p class="mb-0 text-muted mt-2">{{ comment.content }}</p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    {% empty %}
+                                        <span class="text-warning">نظری برای این محصول ثبت نشده !</span> 
+                                    {% endfor %}
                                 </div>
                             </div>
 
