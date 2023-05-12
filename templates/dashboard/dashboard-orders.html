@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title%}سفارشات{% endblock %}
+{% block main %}
+
+<section>
+    <div class="container-fluid blog mb-3">
+        <div class="row mx-lg-4 mx-0">
+            <div class="blog-head px-0">
+                <div class="row">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb pb-3 pt-4 mb-0 fs-small">
+                            <li class="breadcrumb-item text-muted"><a href="#">خانه</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"> سفارشات </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            {% include 'message.html' %}
+            <div class="col-12 px-0">
+                <div class="row d-flex align-items-start flex-wrap">
+                    {% include 'dashboard/sidebar.html' %}
+                    <div class="col-lg-9 ps-lg-4 mt-0 mt-lg-0">
+                        <div class="w-col-12 border bg-light rounded px-3 pt-2">
+                            
+                            <div class="col-12 d-flex-c-b py-2">
+                                <div class="card bg-information rounded mb-3" style="width: 32%;">
+                                    <div class="card-header fs-small">سفارشات جاری</div>
+                                    <div class="card-body">
+                                        <span class="fs-m"> {{ object_list.awaiting_payments.count }} سفارش </span>
+                                    </div>
+                                    <div class="card-footer py-0 px-0">
+                                        <button class="fs-m fw-bold px-3 py-2 rounded text-muted w-100" data-bs-toggle="collapse" data-bs-target="#order-current" aria-expanded="false" aria-controls="order-current"> مشاهده سفارشات جاری</button>
+                                    </div>
+                                </div>
+                                <div class="card bg-information rounded mb-3" style="width: 32%;">
+                                    <div class="card-header fs-small">سفارشات پرداخت شده</div>
+                                    <div class="card-body">
+                                        <span class="fs-m"> {{ object_list.paids.count }} سفارش  </span>
+                                    </div>
+                                    <div class="card-footer py-0 px-0">
+                                        <button class="fs-m fw-bold px-3 py-2 rounded text-muted w-100" data-bs-toggle="collapse" data-bs-target="#order-transfer" aria-expanded="false" aria-controls="transfer"> مشاهده سفارشات  پرداخت شده</button>
+                                    </div>
+                                </div>
+                                <div class="card bg-information rounded mb-3" style="width: 32%;">
+                                    <div class="card-header fs-small">سفارشات لغو شده</div>
+                                    <div class="card-body">
+                                        <span class="fs-m"> {{ object_list.canceleds.count }} سفارش </span>
+                                    </div>
+                                    <div class="card-footer py-0 px-0">
+                                        <button class="fs-m fw-bold px-3 py-2 rounded text-muted w-100" data-bs-toggle="collapse" data-bs-target="#order-returned" aria-expanded="false" aria-controls="returned"> مشاهده سفارشات لفو شده</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% for order in object_list.paids %}
+                            <div class="col-12 mt-3 border collapse transfer rounded pt-3 pb-2 px-3" id="order-transfer">
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-start">
+                                    <span class="fs-small text-muted"> <i class="fas fa-check-circle fs-5 text-success top-3 pe-1"></i> پرداخت شده</span>
+                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> 23 آبان 1401 </span>
+                                    <div class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> مبلغ پرداختی : <span class="text-light py-11 px-2 rounded mx-1 bg-green">{{ order.get_total_price_by_discount|intcomma }}</span> تومان </div>
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-start border-top mt-2 pt-3">
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> <span class="text-muted"> گیرنده : </span> <span class="text-dark"> {{ order.delivery_address.transferee_name }}</span> </div>
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> <span class="text-muted"> شماره موبایل : </span> <span class="text-dark"> {{ order.delivery_address.user.phone }} </span> </div>
+                                    <div class="fs-small"> <span class="text-muted mb-2"> آدرس : </span> <span class="text-dark"> {{ order.delivery_address.get_full_address }} </span> </div>
+                                </div>
+                                <div style="margin-bottom: 14px;" class="d-flex w-100 flex-wrap align-items-center justify-content-start border-top mt-2 pt-3 border-bottom">
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> <span class="text-muted"> زمان تحویل : </span> <span class="text-dark"> {{ order.delivery_date_jpublish }}</span> </div>
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> <span class="text-muted"> هزینه ارسال : </span> <span class="text-dark"> 30,000 تومان  </span> </div>
+                                </div>
+                                {% for item in order.items.all %}
+                                <div class="d-flex align-items-center justify-content-start">
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> 
+                                        <span class="text-muted"> نام محصول : </span> 
+                                        <span class="text-dark"> {{ item.product.title }} </span> 
+                                    </div>
+                                    <div class="fs-small mb-2"> 
+                                        <span class="text-muted">  تعداد : </span> 
+                                        <span class="text-dark"> {{ item.quantity }} </span>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+
+                        {% for order in object_list.awaiting_payments %}
+                            <div class="col-12 mt-3 border collapse rounded pt-3 pb-2 px-3" id="order-current">
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-start">
+                                    <span class="fs-small text-muted"> <i class="fas fa-check-circle fs-5 text-warning top-3 pe-1"></i>در انتظار پرداخت </span>
+                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> 23 آبان 1401 </span>
+                                    <div class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2">  مبلغ قابل پرداخت : <span class="text-light py-11 px-2 rounded mx-1 bg-green">{{ order.get_total_price_by_discount|intcomma }}</span> تومان </div>
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-start border-top mt-2 pt-3">
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> <span class="text-muted"> گیرنده : </span> <span class="text-dark"> {{ order.delivery_address.transferee_name }}</span> </div>
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> <span class="text-muted"> شماره موبایل : </span> <span class="text-dark"> {{ order.delivery_address.user.phone }} </span> </div>
+                                    <div class="fs-small"> <span class="text-muted mb-2"> آدرس : </span> <span class="text-dark"> {{ order.delivery_address.get_full_address }} </span> </div>
+                                </div>
+                                <div style="margin-bottom: 14px;" class="d-flex w-100 flex-wrap align-items-center justify-content-start border-top mt-2 pt-3 border-bottom">
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> <span class="text-muted"> زمان تحویل : </span> <span class="text-dark"> {{ order.delivery_date_jpublish }}</span> </div>
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> <span class="text-muted"> هزینه ارسال : </span> <span class="text-dark"> 30,000 تومان  </span> </div>
+                                </div>
+                                {% for item in order.items.all %}
+                                <div class="d-flex align-items-center justify-content-start">
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> 
+                                        <span class="text-muted"> نام محصول : </span> 
+                                        <span class="text-dark"> {{ item.product.title }} </span> 
+                                    </div>
+                                    <div class="fs-small mb-2"> 
+                                        <span class="text-muted">  تعداد : </span> 
+                                        <span class="text-dark"> {{ item.quantity }} </span>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-start border-top mt-2 pt-2">
+                                    <button class="btn bg-red fw-bold fs-m text-light  rounded px-2 py-1 mx-1" data-bs-toggle="modal" data-bs-target="#returned" data-bs-whatever="@mdo">لغو سفارش</button>
+                                </div>
+                            </div>
+                            
+                        {% endfor %}
+                        {% for order in object_list.canceleds %}
+                            <div class="col-12 mt-3 border collapse returned rounded pt-3 pb-2 px-3" id="order-returned">
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-start">
+                                    <span class="fs-small text-muted mb-2"> <i class="fas fa-times-circle fs-5 top-3 pe-1 text-danger"></i>لغو شدهdsa</span>
+                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> 23 آبان 1401 </span>
+                                    <div class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> مبلغ سفارش : <span class="text-light py-11 px-2 rounded mx-1 bg-red">{{ order.get_total_price_by_discount|intcomma }}</span> تومان </div>
+                                    <button class="btn btn-sm fs-m bg-red text-light px-2 py-1 rounded top-2 ms-3 border-start ms-3 mb-2" data-bs-toggle="modal" data-bs-target="#reedmore" data-bs-whatever="@mdo"> مشاهده علت </button>
+                                    <div class="modal fade" id="reedmore" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id=""> علت رد درخواست مرجوعی </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <span class="text-muted fs-small paragraph">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+                                                    </span>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn bg-red px-2 py-1 text-light rounded fs-m" data-bs-dismiss="modal">بستن</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-start border-top mt-2 pt-3">
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> <span class="text-muted"> گیرنده : </span> <span class="text-dark"> {{ order.delivery_address.transferee_name }}</span> </div>
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> <span class="text-muted"> شماره موبایل : </span> <span class="text-dark"> {{ order.delivery_address.user.phone }} </span> </div>
+                                    <div class="fs-small"> <span class="text-muted mb-2"> آدرس : </span> <span class="text-dark"> {{ order.delivery_address.get_full_address }} </span> </div>
+                                </div>
+                                <div style="margin-bottom: 14px;" class="d-flex w-100 flex-wrap align-items-center justify-content-start border-top mt-2 pt-3 border-bottom">
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> <span class="text-muted"> زمان تحویل : </span> <span class="text-dark"> {{ order.delivery_date_jpublish }}</span> </div>
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> <span class="text-muted"> هزینه ارسال : </span> <span class="text-dark"> 30,000 تومان  </span> </div>
+                                </div>
+                                {% for item in order.items.all %}
+                                <div class="d-flex align-items-center justify-content-start">
+                                    <div class="fs-small pe-3 border-end me-3 mb-2"> 
+                                        <span class="text-muted"> نام محصول : </span> 
+                                        <span class="text-dark"> {{ item.product.title }} </span> 
+                                    </div>
+                                    <div class="fs-small mb-2"> 
+                                        <span class="text-muted">  تعداد : </span> 
+                                        <span class="text-dark"> {{ item.quantity }} </span>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
