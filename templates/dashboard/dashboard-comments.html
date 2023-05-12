@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title%}نظرات{% endblock %}
+{% block main %}
+
+
+<section>
+    <div class="container-fluid blog mb-3">
+        <div class="row mx-lg-4 mx-0">
+            <div class="blog-head px-0">
+                <div class="row">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb pb-3 pt-4 mb-0 fs-small">
+                            <li class="breadcrumb-item text-muted"><a href="#">خانه</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"> نطرات </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            {% include 'message.html' %}
+            <div class="col-12 px-0">
+                <div class="row d-flex align-items-start flex-wrap">
+                    {% include 'dashboard/sidebar.html' %}
+                    <div class="col-lg-9 ps-lg-4 mt-3 mt-lg-0">
+                        <div class="w-col-12 border bg-light rounded px-3 pt-2">
+                            <div class="d-flex-c-b py-2">
+                                <span class="fs-small text-dark"> نظرات شما  </span>
+                            </div>
+                            <div class="col-12 px-0 bg-wihte px-2 fs-small">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">محصول</th>
+                                            <th scope="col">دیدگاه شما</th>
+                                            <th scope="col">وضعیت </th>
+                                            <th scope="col">حذف </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-muted">
+                                        {% for comment in object_list %}
+                                            <tr>
+                                                <th scope="row">{{ forloop.counter }}</th>
+                                                <td>{{ comment.product.title }}</td>
+                                                <td>{{ comment.content }}</td>
+                                                {% if comment.status == "confirmed" %}
+                                                    <td><span class="fs-m bg-green rounded px-2 py-1 text-light top-3">تایید شده </span></td>
+                                                {% else %}    
+                                                    <td><span class="fs-m bg-warning rounded px-2 py-1 text-light top-3">در انتظار تایید</span></td>
+                                                {% endif %}    
+                                                <td> <a href="{% url 'comment:comment-delete' comment.pk %}" class="btn btn-sm bg-danger rounded fs-m my-0" > حذف </a> </td>
+                                                </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
