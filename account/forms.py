@@ -43,6 +43,3 @@ class AddressUpdateForm(forms.ModelForm):
     class Meta():
         model = Address
         fields = ['province', 'city', 'postal_code', 'address', 'transferee_name']     
-
-
-
