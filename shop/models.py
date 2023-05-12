@@ -85,6 +85,13 @@ class Coupon(models.Model):
     def __str__(self):
         return self.code
     
+class OrderManager(models.Manager):
+    def get_orders_list(self, user):
+            return {
+                'paids' : self.filter(status='paid', user=user),
+                'awaiting_payments' : self.filter(status='awaiting_payment', user=user),
+                'canceleds' : self.filter(status='canceled', user=user),
+            }
 
 class Order(models.Model):
     STATUS_CHOICES = (
@@ -124,6 +131,7 @@ class Order(models.Model):
             return int(self.get_total_price() - self.get_total_discount())
         return self.get_total_price()
 
+    objects = OrderManager()
 
     def __str__(self):
         return f"{self.user} - {self.id} - {self.status}"
