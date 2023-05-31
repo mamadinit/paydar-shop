@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{% static 'fonts/FontAwesome.Pro.5.15.2.Web/css/all.css' %}">
     <link rel="stylesheet" href="{% static 'css/owl.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
-    <link rel="stylesheet" href="{% static 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/fancybox.css' %}" />
     <script src="{% static 'js/jquery.js' %}"></script>
     <script src="{% static 'js/owl.js' %}"></script>
     <title>{% block title%}سربرگ{% endblock %}</title>
@@ -27,7 +27,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">صفحه اصلی</a>
+                            <a class="nav-link active" aria-current="page" href="{% url 'shop:home' %}">صفحه اصلی</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link " href="shop.html">دسته بندی کالا ها</a>
@@ -47,7 +47,7 @@
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
                         <li class="nav-item me-2">
-                            <a class="nav-link" aria-current="page" href="#"> 045-32720000 <i class="far fa-user-headset fs-4 ms-1"></i>
+                            <a class="nav-link" aria-current="page" href="#"> 09383520141 <i class="far fa-user-headset fs-4 ms-1"></i>
                             </a>
                         </li>
                         <li class="nav-item me-2">
@@ -61,17 +61,19 @@
                                             <h5 class="modal-title  fw-bold fs-6" id="exampleModalLabel"> جستجوی محصول </h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-body">
-                                            <form action="#" method="post">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control fw-bold fs-small text-muted py-2" placeholder="جستجوی محصول">
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary btn-sm btn-secondary fw-bold bg-green " data-bs-dismiss="modal">بستن</button>
-                                            <button type="button" class="btn btn-sm btn-primary fw-bold bg-red"> جستجو </button>
-                                        </div>
+                                        <form action="{% url 'shop:search' %}" method="get">
+                                            <div class="modal-body">
+                                                
+                                                    <div class="form-group">
+                                                        <input type="text" name="query" class="form-control fw-bold fs-small text-muted py-2" placeholder="جستجوی محصول">
+                                                    </div>
+                                                
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary btn-sm btn-secondary fw-bold bg-green " data-bs-dismiss="modal">بستن</button>
+                                                <button type="submit" class="btn btn-sm btn-primary fw-bold bg-red"> جستجو </button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -88,9 +90,20 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item">
-                            <a href="" class="btn btn-red rounded d-flex alight-items-center py-2 px-2"> <i class="fad fa-user-circle fs-3 top-1 me-1"></i> ورود عضویت </a>
-                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a href="{% url 'dashboard:dashboard-info' %}" class="btn btn-red rounded d-flex alight-items-center py-2 px-2"> 
+                                    <i class="fad fa-user-circle fs-3 top-1 me-1"></i> حساب کاربری
+                                </a>
+                            </li> 
+                        {% else %}
+                            <li class="nav-item">
+                                <a href="{% url 'login' %}" class="btn btn-red rounded d-flex alight-items-center py-2 px-2"> 
+                                    <i class="fad fa-user-circle fs-3 top-1 me-1"></i> ورورد
+                                </a>
+                            </li>
+                        {% endif %}
+                        
                     </ul>
                 </div>
             </div>
@@ -169,14 +182,20 @@
                         <div class="row w-100 px-0 mx-0 d-flex-c-b">
                             <div class="col-9 px-0">
                                 <div class="form-group position-relative">
-                                    <input type="text" class="form-control search-box bg-light text-muted" placeholder=" جستجوی محصول ">
-                                    <a href="" class="form-icon text-muted"><i class="far fa-search"></i></a>
+                                    <form method="get" action="{% url 'shop:search' %}">
+                                        <input type="text" name="query" class="form-control search-box bg-light text-muted" placeholder=" جستجوی محصول ">
+                                        <button type="submit" class="form-icon text-muted"><i class="far fa-search"></i></button>
+                                    </form>
                                 </div>
                             </div>
                             <div class="col-3 px-0 text-end d-flex align-items-center justify-content-end">
                                 <span class="badge bg-red position-relative mt-1 me-1">0</span>
                                 <i class="far fa-shopping-bag px-1 ps-0 text-muted fs-3"></i>
-                                <a href="" class="text-muted fs-3 ps-1"> <i class="far fa-user"></i> </a>
+                                {% if user.is_authenticated %}
+                                    <a href="{% url 'dashboard:dashboard-info' %}" class="text-muted fs-3 ps-1"> <i class="far fa-user"></i> </a>
+                                {% else %}
+                                    <a href="{% url 'login' %}" class="text-muted fs-3 ps-1"> <i class="far fa-user"></i> </a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

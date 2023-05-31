@@ -58,7 +58,7 @@
                             <div class="col-12 mt-3 border collapse transfer rounded pt-3 pb-2 px-3" id="order-transfer">
                                 <div class="d-flex w-100 flex-wrap align-items-center justify-content-start">
                                     <span class="fs-small text-muted"> <i class="fas fa-check-circle fs-5 text-success top-3 pe-1"></i> پرداخت شده</span>
-                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> 23 آبان 1401 </span>
+                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> {{ order.jpublish }}</span>
                                     <div class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> مبلغ پرداختی : <span class="text-light py-11 px-2 rounded mx-1 bg-green">{{ order.get_total_price_by_discount|intcomma }}</span> تومان </div>
                                 </div>
                                 <div class="d-flex w-100 flex-wrap align-items-center justify-content-start border-top mt-2 pt-3">
@@ -89,7 +89,7 @@
                             <div class="col-12 mt-3 border collapse rounded pt-3 pb-2 px-3" id="order-current">
                                 <div class="d-flex w-100 flex-wrap align-items-center justify-content-start">
                                     <span class="fs-small text-muted"> <i class="fas fa-check-circle fs-5 text-warning top-3 pe-1"></i>در انتظار پرداخت </span>
-                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> 23 آبان 1401 </span>
+                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> {{ order.jpublish }}</span>
                                     <div class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2">  مبلغ قابل پرداخت : <span class="text-light py-11 px-2 rounded mx-1 bg-green">{{ order.get_total_price_by_discount|intcomma }}</span> تومان </div>
                                 </div>
                                 <div class="d-flex w-100 flex-wrap align-items-center justify-content-start border-top mt-2 pt-3">
@@ -114,16 +114,15 @@
                                 </div>
                                 {% endfor %}
                                 <div class="d-flex w-100 flex-wrap align-items-center justify-content-start border-top mt-2 pt-2">
-                                    <button class="btn bg-red fw-bold fs-m text-light  rounded px-2 py-1 mx-1" data-bs-toggle="modal" data-bs-target="#returned" data-bs-whatever="@mdo">لغو سفارش</button>
+                                    <a href="{% url 'shop:order_cancel' order.pk %}" class="btn bg-red fw-bold fs-m text-light  rounded px-2 py-1 mx-1" >لغو سفارش</a>
                                 </div>
                             </div>
-                            
                         {% endfor %}
                         {% for order in object_list.canceleds %}
                             <div class="col-12 mt-3 border collapse returned rounded pt-3 pb-2 px-3" id="order-returned">
                                 <div class="d-flex w-100 flex-wrap align-items-center justify-content-start">
-                                    <span class="fs-small text-muted mb-2"> <i class="fas fa-times-circle fs-5 top-3 pe-1 text-danger"></i>لغو شدهdsa</span>
-                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> 23 آبان 1401 </span>
+                                    <span class="fs-small text-muted mb-2"> <i class="fas fa-times-circle fs-5 top-3 pe-1 text-danger"></i>لغو شده</span>
+                                    <span class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> {{ order.jpublish }}</span>
                                     <div class="text-muted fs-small top-2 ps-3 border-start ms-3 mb-2"> مبلغ سفارش : <span class="text-light py-11 px-2 rounded mx-1 bg-red">{{ order.get_total_price_by_discount|intcomma }}</span> تومان </div>
                                     <button class="btn btn-sm fs-m bg-red text-light px-2 py-1 rounded top-2 ms-3 border-start ms-3 mb-2" data-bs-toggle="modal" data-bs-target="#reedmore" data-bs-whatever="@mdo"> مشاهده علت </button>
                                     <div class="modal fade" id="reedmore" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

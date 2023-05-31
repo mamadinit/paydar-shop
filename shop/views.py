@@ -1,8 +1,10 @@
+from typing import Any, Dict
 from django.db import models
+from django.db.models.query import QuerySet
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import DetailView
-from django.views import View
+from django.views.generic import DetailView, TemplateView, ListView, View
+from django.db.models import Q
 import datetime
 from django.utils import timezone
 from django.contrib import messages
@@ -15,6 +17,8 @@ from comment.forms import CommentCreateForm
 
 # Create your views here.
 
+class HomeView(TemplateView):
+    template_name = 'shop/home.html'
 
 
 class ProductDetailView(DetailView):
@@ -99,6 +103,16 @@ class OrderCreateView(View):
                     return redirect('address:address-create')
 
 
+
+class OrderCancelView(LoginRequiredMixin, View):
+    def get(self, request, pk):
+        order = get_object_or_404(Order, pk=pk, user=request.user)
+        order.status = 'canceled'
+        order.save()
+        messages.success(self.request, f'سفارش با کد {order.pk} با موفقیت لغو شد .', 'success')
+        return redirect('dashboard:dashboard-order')
+    
+
 class CouponApplyView(View):
     def post(self, request, order_id):
         now = timezone.now()
@@ -119,3 +133,18 @@ class CouponApplyView(View):
         else:
             messages.error(request, 'دوباره امتحان کنید', 'danger')
             return redirect('shop:order_detail', order_id)
+        
+
+class SearchView(ListView):
+    template_name = 'shop/search.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('query')
+
+        return Product.objects.filter(Q(description__icontains=query) | Q(title__icontains=query))	
+    
+    def get_context_data(self, **kwargs: Any):
+        context = super().get_context_data(**kwargs) 
+        context['query'] = self.request.GET.get('query')
+
+        return context
