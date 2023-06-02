@@ -5,6 +5,347 @@
 {% block title%}{{ object.title }}{% endblock %}
 {% block main %}
 
-<h1>بوص</h1>
+
+<section>
+    <div class="container-fluid banner mt-3 ">
+        <div class="row mx-lg-4 mx-0 d-flex align-items-stretch flex-wrap ">
+            <div class="col-lg-8 px-0">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{% static 'img/bb.jpg' %}" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'img/bb.jpg' %}" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'img/bb.jpg' %}" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <style>
+                        .carousel-item:hover {
+                            margin: 0px;
+                            background-color: blue;
+                        }
+                    </style>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-4 sec2-left ">
+                <a href="#">
+                    <img src="{% static 'img/1.gif' %}" class="rounded" alt="">
+                </a>
+                <a href="#">
+                    <img src="{% static 'img/2.webp' %} " class="rounded mt-lg-2" alt=" ">
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END BANNER SIDE -->
+
+<!-- END BRANDS SIDE -->
+<section>
+    <div class="container-fluid wnd mt-4 ">
+        <div class="row mx-0 mx-lg-4 pt-2 ">
+            <div class="col-12 py-3 py-lg-4">
+                <div class="row wnd-row d-flex alight-items-center ">
+                    <div class="col-md-2 d-none d-lg-flex px-0 ">
+                        <div class="row w-100 ">
+                            <div class="w-100 d-flex-c-c">
+                                <img src="{% static 'img/amazing.webp' %}" class="img-fluid" alt=" ">
+                            </div>
+                            <div class="w-100 wnd-btn mt-3 d-flex-c-c">
+                                <a href="#" class="px-3"> مشاهده محصولات </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-10 wnd-left px-0 rounded ">
+                        <div class="d-flex d-lg-none align-items-center justify-content-between mb-4">
+                            <span class="text-light "> پیشنهاد شگفت انگیز </span>
+                            <a href=" " class="btn btn-outline-light btn-sm fs-bold fs-small ps-3 pe-0 "> مشاهده همه </a>
+                        </div>
+                        <div class="owl-carousel owl-wnd owl-theme">
+                            <div class="item">
+                                <div class="box shadow-sm rounded bg-wihte ">
+                                    <div class="wnd-right-box-head bg-light px-4 rounded position-relative ">
+                                        <span class="offer">20%</span>
+                                        <img src="{% static 'img/product4.webp' %}" class="img-fluid" alt=" ">
+                                    </div>
+                                    <div class="wnd-right-box-body px-2 mb-1 mt-3 text-center ">
+                                        <a href=" " class="link text-muted fs-6"> لپ تاپ 15.6 اینچی لنوو مدل ideaPad L36-R16</a>
+                                    </div>
+                                    <div class="w-100 px-2">
+                                        <div class=" d-flex-c-b mt-lg-2 ">
+                                            <del class="text-danger"><span class="text-danger fs-small"> 54,000,000 تومان</span></del>
+                                            <span class="text-success fs-small "> 54,000,000 تومان</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-light shadow-sm border fw-bold text-muted w-100 my-3 py-2 "> سفارش محصول </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="box shadow-sm rounded bg-wihte ">
+                                    <div class="wnd-right-box-head bg-light px-4 rounded position-relative ">
+                                        <span class="offer">20%</span>
+                                        <img src="{% static 'img/product6.webp' %}" class="img-fluid" alt=" ">
+                                    </div>
+                                    <div class="wnd-right-box-body px-2 mb-1 mt-3 text-center ">
+                                        <a href="product.html" class="link text-muted fs-6"> لپ تاپ 15.6 اینچی لنوو مدل ideaPad L36-R16</a>
+                                    </div>
+                                    <div class="w-100 px-2">
+                                        <div class=" d-flex-c-b mt-lg-2 ">
+                                            <del class="text-danger"><span class="text-danger fs-small"> 54,000,000 تومان</span></del>
+                                            <span class="text-success fs-small "> 54,000,000 تومان</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-light shadow-sm border fw-bold text-muted w-100 my-3 py-2 "> سفارش محصول </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="box shadow-sm rounded bg-wihte ">
+                                    <div class="wnd-right-box-head bg-light px-4 rounded position-relative ">
+                                        <span class="offer">20%</span>
+                                        <img src="{% static 'img/product1.webp' %}" class="img-fluid" alt=" ">
+                                    </div>
+                                    <div class="wnd-right-box-body px-2 mb-1 mt-3 text-center ">
+                                        <a href="product.html" class="link text-muted fs-6"> لپ تاپ 15.6 اینچی لنوو مدل ideaPad L36-R16</a>
+                                    </div>
+                                    <div class="w-100 px-2">
+                                        <div class=" d-flex-c-b mt-lg-2 ">
+                                            <del class="text-danger"><span class="text-danger fs-small"> 54,000,000 تومان</span></del>
+                                            <span class="text-success fs-small "> 54,000,000 تومان</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-light shadow-sm border fw-bold text-muted w-100 my-3 py-2 "> سفارش محصول </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="box shadow-sm rounded bg-wihte ">
+                                    <div class="wnd-right-box-head bg-light px-4 rounded position-relative ">
+                                        <span class="offer">20%</span>
+                                        <img src="{% static 'img/product9.webp' %}" class="img-fluid" alt=" ">
+                                    </div>
+                                    <div class="wnd-right-box-body px-2 mb-1 mt-3 text-center ">
+                                        <a href="product.html" class="link text-muted fs-6"> لپ تاپ 15.6 اینچی لنوو مدل ideaPad L36-R16</a>
+                                    </div>
+                                    <div class="w-100 px-2">
+                                        <div class=" d-flex-c-b mt-lg-2 ">
+                                            <del class="text-danger"><span class="text-danger fs-small"> 54,000,000 تومان</span></del>
+                                            <span class="text-success fs-small "> 54,000,000 تومان</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-light shadow-sm border fw-bold text-muted w-100 my-3 py-2 "> سفارش محصول </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="box shadow-sm rounded bg-wihte ">
+                                    <div class="wnd-right-box-head bg-light px-4 rounded position-relative ">
+                                        <span class="offer">20%</span>
+                                        <img src="{% static 'img/product3.webp' %}" class="img-fluid" alt=" ">
+                                    </div>
+                                    <div class="wnd-right-box-body px-2 mb-1 mt-3 text-center ">
+                                        <a href="product.html" class="link text-muted fs-6"> لپ تاپ 15.6 اینچی لنوو مدل ideaPad L36-R16</a>
+                                    </div>
+                                    <div class="w-100 px-2">
+                                        <div class=" d-flex-c-b mt-lg-2 ">
+                                            <del class="text-danger"><span class="text-danger fs-small"> 54,000,000 تومان</span></del>
+                                            <span class="text-success fs-small "> 54,000,000 تومان</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-light shadow-sm border fw-bold text-muted w-100 my-3 py-2 "> سفارش محصول </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="box shadow-sm rounded bg-wihte ">
+                                    <div class="wnd-right-box-head bg-light px-4 rounded position-relative ">
+                                        <span class="offer">20%</span>
+                                        <img src="{% static 'img/product5.webp' %}" class="img-fluid" alt=" ">
+                                    </div>
+                                    <div class="wnd-right-box-body px-2 mb-1 mt-3 text-center ">
+                                        <a href="product.html" class="link text-muted fs-6"> لپ تاپ 15.6 اینچی لنوو مدل ideaPad L36-R16</a>
+                                    </div>
+                                    <div class="w-100 px-2">
+                                        <div class=" d-flex-c-b mt-lg-2 ">
+                                            <del class="text-danger"><span class="text-danger fs-small"> 54,000,000 تومان</span></del>
+                                            <span class="text-success fs-small "> 54,000,000 تومان</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-light shadow-sm border fw-bold text-muted w-100 my-3 py-2 "> سفارش محصول </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="box shadow-sm rounded bg-wihte ">
+                                    <div class="wnd-right-box-head bg-light px-4 rounded position-relative ">
+                                        <span class="offer">20%</span>
+                                        <img src="{% static 'img/product6.webp' %}" class="img-fluid" alt=" ">
+                                    </div>
+                                    <div class="wnd-right-box-body px-2 mb-1 mt-3 text-center ">
+                                        <a href="product-not-available.html" class="link text-muted fs-6"> لپ تاپ 15.6 اینچی لنوو مدل ideaPad L36-R16</a>
+                                    </div>
+                                    <div class="w-100 px-2">
+                                        <div class=" d-flex-c-b mt-lg-2 ">
+                                            <del class="text-danger"><span class="text-danger fs-small"> 54,000,000 تومان</span></del>
+                                            <span class="text-success fs-small "> 54,000,000 تومان</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-light shadow-sm border fw-bold text-muted w-100 my-3 py-2 "> سفارش محصول </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+<!-- END AMAZING PRODUCTS SIDE -->
+<section>
+    <div class="container-fluid banner-small py-4 bg-light ">
+        <div class="row mx-lg-4 mx-0">
+            <div class="col-12 px-0">
+                <div class="row px-2">
+                    <div class="col-6 col-lg-3 p-1 px-lg-2 ">
+                        <a href=" ">
+                            <img src="{% static 'img/1000013192.webp' %}" class="w-100 " alt=" ">
+                        </a>
+                    </div>
+                    <div class="col-6 col-lg-3 p-1 px-lg-2 ">
+                        <a href=" ">
+                            <img src="{% static 'img/1000012909.webp' %} " class="w-100 " alt=" ">
+                        </a>
+                    </div>
+                    <div class="col-6 col-lg-3 p-1 px-lg-2 ">
+                        <a href=" ">
+                            <img src="{% static 'img/1000012860.webp' %} " class="w-100 " alt=" ">
+                        </a>
+                    </div>
+                    <div class="col-6 col-lg-3 p-1 px-lg-2 ">
+                        <a href=" ">
+                            <img src="{% static 'img/1000012872.webp' %} " class="w-100 " alt=" ">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section>
+    <div class="container-fluid blog mt-3 mb-4">
+        <div class="row mx-lg-4 mx-0 ">
+            <div class="col-12 px-0">
+                <div class="row">
+                    <div class="col-12 d-flex-c-b ">
+                        <span class="text-muted "> مقالات و خواندنی ها</span>
+                        <a href="" class="text-muted fs-small btn btn-outline-light rounded border fw-bold py-2 px-3 shadow-sm"> مشاهده همه </a>
+                    </div>
+                    <div class="col-12 d-flex-c-b py-3">
+                        <div class="owl-carousel owl-blog owl-theme">
+                            <div class="item">
+                                <div class="shadow-sm">
+                                    <div>
+                                        <img src="{% static 'img/02.webp' %}" class="w-100" alt="">
+                                    </div>
+                                    <div class="blogmainbox-body px-2 my-3">
+                                        <a href="" class="text-dark">
+                                            سامسونگ در سه‌ماه نخست ۲۰۲۲ صدرنشین بازار موبایل باقی ماند
+                                    </a>
+                                        <p class="text-muted mt-2">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون است ... </p>
+                                    </div>
+                                    <div class="d-flex-c-b px-2 pb-3 mt-3">
+                                        <a href="" class="text-muted fs-small">
+                                            <i class="far fa-user pe-2"></i> <span>وصال علی زاده</span>
+                                        </a>
+                                        <a href="" class="text-muted">
+                                            <i class="far fa-long-arrow-left fs-5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="shadow-sm">
+                                    <div>
+                                        <img src="{% static 'img/google-ads-app-install-300x300.webp' %}" class="w-100" alt="">
+                                    </div>
+                                    <div class="blogmainbox-body px-2 my-3">
+                                        <a href="" class="text-dark">
+                                            سامسونگ در سه‌ماه نخست ۲۰۲۲ صدرنشین بازار موبایل باقی ماند
+                                    </a>
+                                        <p class="text-muted mt-2">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون است ... </p>
+                                    </div>
+                                    <div class="d-flex-c-b px-2 pb-3 mt-3">
+                                        <a href="" class="text-muted fs-small">
+                                            <i class="far fa-user pe-2"></i> <span>وصال علی زاده</span>
+                                        </a>
+                                        <a href="" class="text-muted">
+                                            <i class="far fa-long-arrow-left fs-5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="shadow-sm">
+                                    <div>
+                                        <img src="{% static 'img/61a32e94e8f10b1c89304df5.webp' %}" class="w-100" alt="">
+                                    </div>
+                                    <div class="blogmainbox-body px-2 my-3">
+                                        <a href="" class="text-dark">
+                                            سامسونگ در سه‌ماه نخست ۲۰۲۲ صدرنشین بازار موبایل باقی ماند
+                                    </a>
+                                        <p class="text-muted mt-2">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون است ... </p>
+                                    </div>
+                                    <div class="d-flex-c-b px-2 pb-3 mt-3">
+                                        <a href="" class="text-muted fs-small">
+                                            <i class="far fa-user pe-2"></i> <span>وصال علی زاده</span>
+                                        </a>
+                                        <a href="" class="text-muted">
+                                            <i class="far fa-long-arrow-left fs-5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="shadow-sm">
+                                    <div>
+                                        <img src="{% static 'img/4-350x235.webp' %}" class="w-100" alt="">
+                                    </div>
+                                    <div class="blogmainbox-body px-2 my-3">
+                                        <a href="" class="text-dark">
+                                            سامسونگ در سه‌ماه نخست ۲۰۲۲ صدرنشین بازار موبایل باقی ماند
+                                    </a>
+                                        <p class="text-muted mt-2">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون است ... </p>
+                                    </div>
+                                    <div class="d-flex-c-b px-2 pb-3 mt-3">
+                                        <a href="" class="text-muted fs-small">
+                                            <i class="far fa-user pe-2"></i> <span>وصال علی زاده</span>
+                                        </a>
+                                        <a href="" class="text-muted">
+                                            <i class="far fa-long-arrow-left fs-5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 {% endblock %}
