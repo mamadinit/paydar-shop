@@ -13,20 +13,28 @@ class Attribute(models.Model):
     status = models.BooleanField(default=True, verbose_name="نمایش داده شود؟")
     def __str__(self) -> str:
         return self.title
+    
+    class Meta:
+        verbose_name = "ویژگی"
+        verbose_name_plural = "ویژگی ها"
 
 class Category(models.Model):
     title = models.CharField(max_length = 50, verbose_name = "عنوان دسته بندی")
     slug = models.SlugField(max_length = 100, unique = True, verbose_name = "اسلاگ")
 
     def __str__(self):
-        return self.title 
+        return self.title     
+    
+    class Meta:
+        verbose_name = "دسته بندی"
+        verbose_name_plural = "دسته بندی ها"
 
 class Classification(models.Model):
     title = models.CharField(max_length = 50, verbose_name = "عنوان  طبقه بندی")
 
     class Meta:
-        verbose_name = "دسته بندی"
-        verbose_name_plural = "دسته بندی ها"
+        verbose_name = "طبقه بندی"
+        verbose_name_plural = "طبقه بندی ها"
 
     def __str__(self):
         return self.title 

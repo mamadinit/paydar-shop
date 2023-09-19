@@ -55,12 +55,12 @@ class ArticleCommentCreateView(LoginRequiredMixin, View):
         if form.is_valid():
             new_comment = form.save(commit=False)
             slug = self.kwargs.get('slug')
-            product = get_object_or_404(Product, slug=self.kwargs.get('slug'))
-            new_comment.product = product
+            article = get_object_or_404(Article, slug=slug)
+            new_comment.article = article
             new_comment.user = request.user
             new_comment.save()
             messages.error(request, 'نظر شما ثبت و در انتظار تایید میباشید . ', 'success')
         else:
             form = ArticleCommentCreateForm()
 
-        return redirect('shop:article-detail', product.slug)
+        return redirect('blog:article-detail', article.slug)
