@@ -23,6 +23,7 @@ from account.views import SignUpView, CustomLoginView
 
 urlpatterns = [
     path('', include('shop.urls')),
+    path('blog/', include('blog.urls')),
     path('dashboard/', include('dashboard.urls')),
     path('comment/', include('comment.urls')),
     path('account/', include('account.urls')),

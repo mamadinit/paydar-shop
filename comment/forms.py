@@ -1,16 +1,20 @@
 
 from django import forms
-from .models import Comment
-
-class CommentUpdateForm(forms.ModelForm):
-    class Meta():
-        model = Comment
-        fields = ['content']   
+from .models import ProductComment, ArticleComment
 
 
 
-class CommentCreateForm(forms.ModelForm):
+
+class ProductCommentCreateForm(forms.ModelForm):
     class Meta:
-        model = Comment
+        model = ProductComment
+        fields = ('content',)
+            
+
+
+
+class ArticleCommentCreateForm(forms.ModelForm):
+    class Meta:
+        model = ArticleComment
         fields = ('content',)
             

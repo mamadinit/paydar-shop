@@ -9,16 +9,24 @@ import datetime
 from django.utils import timezone
 from django.contrib import messages
 from .models import Product, Order, OrderItem, Coupon
-from comment.models import Comment
+from comment.models import ProductComment
 from .utils.cart import Cart
 from .forms import Add2CartForm, CouponForm
 from account.models import Address
-from comment.forms import CommentCreateForm
+from comment.forms import ProductCommentCreateForm
+from blog.models import Article
 
 # Create your views here.
 
 class HomeView(TemplateView):
     template_name = 'shop/home.html'
+
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        context['articles'] = Article.objects.published()
+
+        return context
 
 
 class ProductDetailView(DetailView):
@@ -32,8 +40,8 @@ class ProductDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         slug = self.kwargs.get('slug')
         product = get_object_or_404(Product, slug=slug)
-        context['comments'] = Comment.objects.filter(product=product, status='confirmed')
-        context['form'] = CommentCreateForm()
+        context['comments'] = ProductComment.objects.filter(product=product, status='confirmed')
+        context['form'] = ProductCommentCreateForm()
         return context
     
 	

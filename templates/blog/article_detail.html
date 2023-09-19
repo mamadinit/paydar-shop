@@ -1,3 +1,8 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title%}{{ object.title }}{% endblock %}
+{% block main %}
 
 <section>
     <div class="container-fluid blog mb-3">
@@ -16,10 +21,10 @@
                 <div class="row d-flex align-items-start flex-wrap">
                     <div class="col-lg-8 d-flex align-items-center justify-content-start pe-lg-4 border-end">
                         <div class="col-12">
-                            <h1 class="text-muted fs-6 fw-bold"> امکانات جدید ساعت هوشمند اپل و معرفی بهترینها در سال 2022</h1>
+                            <h1 class="text-muted fs-6 fw-bold">{{ object.title }}</h1>
                             <div class="col-12 mt-2 d-flex align-items-center">
-                                <div class="pe-2"><img src="img/profile-456.png" class="profile-authre-blog rounded" alt=""><span class="title-authre-blog "> نویسنده : </span> <span class="des-authre-blog text-muted"> وصال علی زاده </span></div>
-                                <div class="pb-1 border-start ps-2"><span class="title-authre-blog "> منتشر شده در : </span> <span class="des-authre-blog text-muted"> 1401/05/01 </span></div>
+                                <div class="pe-2"><img src="img/profile-456.png" class="profile-authre-blog rounded" alt=""><span class="title-authre-blog "> نویسنده : </span> <span class="des-authre-blog text-muted">{{ object.author }}</span></div>
+                                <div class="pb-1 border-start ps-2"><span class="title-authre-blog "> منتشر شده در : </span> <span class="des-authre-blog text-muted"> {{ object.jpublish }} </span></div>
                             </div>
                             <div class="col-12 mt-3">
                                 <img src="img/ssl.webp" class="w-100 rounded" alt="">
@@ -41,16 +46,9 @@
                                 </div>
                             </div>
                             <div class="col-12 border-top">
-                                <p class="description-blog mb-0 mt-3">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع
-                                    با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی،
-                                    و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته
-                                    اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است،
-                                    و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری
-                                    را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل
-                                    حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه
-                                    روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه
-                                    و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها،
-                                    و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود .</p>
+                                <p class="description-blog mb-0 mt-3">
+                                    {{ object.body|safe }}
+                                </p>
                             </div>
                             <div class="col-12 border-top mt-3 pt-3">
                                 <div class="comment-head-blog">
@@ -58,7 +56,7 @@
                                         <div class="cm-card-head d-flex-c-b px-3">
                                             <div class="d-flex-c-b flex-wrap w-100">
                                                 <div class="d-flex justify-content-start col-12 col-lg-6">
-                                                    <img src="img/fc377d0cd92124769962556a3bcfb094.jpg" class="rounded-circle" alt="">
+                                                    <img src="{% static 'img/fc377d0cd92124769962556a3bcfb094.jpg' %}" class="rounded-circle" alt="">
                                                     <div class="ms-3">
                                                         <span class="text-muted mb-2 mt-2 d-block"> وصال علی زاده </span>
                                                         <span class="text-muted"> در تاریخ : 1401/04/24 </span>
@@ -129,7 +127,7 @@
                                 <div class="w-100 d-flex-c-b flex-wrap mb-2">
                                     <a href="#" class="shadow-sm pb-2 mt-3 w-100">
                                         <div class="d-flex">
-                                            <img src="img/02.webp" class="rounded blog-favir-img me-3" alt="">
+                                            <img src="{% static 'img/02.webp' %}" class="rounded blog-favir-img me-3" alt="">
                                             <div>
                                                 <span class="blog-favir-title"> ویژگی جدید لپ تاپ ها در سال 2022 سال تکنولوژی </span>
                                             </div>
@@ -137,7 +135,7 @@
                                     </a>
                                     <a href="#" class="shadow-sm pb-2 mt-3 w-100">
                                         <div class="d-flex">
-                                            <img src="img/61a32e94e8f10b1c89304df5.webp" class="rounded blog-favir-img me-3" alt="">
+                                            <img src="{% static 'img/61a32e94e8f10b1c89304df5.webp' %}" class="rounded blog-favir-img me-3" alt="">
                                             <div>
                                                 <span class="blog-favir-title"> ویژگی جدید لپ تاپ ها در سال 2022 سال تکنولوژی </span>
                                             </div>
@@ -145,7 +143,7 @@
                                     </a>
                                     <a href="#" class="shadow-sm pb-2 mt-3 w-100">
                                         <div class="d-flex">
-                                            <img src="img/4-350x235.webp" class="rounded blog-favir-img me-3" alt="">
+                                            <img src="{% static 'img/4-350x235.webp' %}" class="rounded blog-favir-img me-3" alt="">
                                             <div>
                                                 <span class="blog-favir-title"> ویژگی جدید لپ تاپ ها در سال 2022 سال تکنولوژی </span>
                                             </div>
@@ -166,7 +164,7 @@
                             </form>
                         </div>
                         <div class=" d-flex-c-c rounded border mt-3 px-5 py-3 flex-column bg-wihte">
-                            <img src="img/SpecialSell.svg" class="mt-3 w-25" alt="">
+                            <img src="{% static 'img/SpecialSell.svg' %}" class="mt-3 w-25" alt="">
                             <div class="col-12 px-3">
                                 <div id="progressBar" class="mt-3 mb-3 position-relative">
                                     <div class="slide-progress"></div>
@@ -175,7 +173,7 @@
                                     <div class="item">
                                         <div class="rounded bg-wihte">
                                             <div class="wnd-right-box-head px-4 rounded position-relative ">
-                                                <img src="img/product4.webp" class="img-fluid" alt="">
+                                                <img src="{% static 'img/product4.webp' %}" class="img-fluid" alt="">
                                             </div>
                                             <div class="wnd-right-box-body px-2 mt-0 text-center ">
                                                 <a href="" class="link text-muted fs-small"> لپ تاپ 15.6 اینچی لنوو مدل ideaPad L36-R16</a>
@@ -185,7 +183,7 @@
                                     <div class="item">
                                         <div class="rounded bg-wihte">
                                             <div class="wnd-right-box-head px-4 rounded position-relative ">
-                                                <img src="img/product6.webp" class="img-fluid" alt="">
+                                                <img src="{% static 'img/product6.webp' %}" class="img-fluid" alt="">
                                             </div>
                                             <div class="wnd-right-box-body px-2 mt-0 text-center ">
                                                 <a href="" class="link text-muted fs-small"> لپ تاپ 15.6 اینچی لنوو مدل ideaPad L36-R16</a>
@@ -202,3 +200,5 @@
     </div>
 </section>
 
+
+{% endblock %}

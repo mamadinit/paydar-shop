@@ -25,7 +25,7 @@
                     <div class="col-lg-9 ps-lg-4 mt-3 mt-lg-0">
                         <div class="w-col-12 border bg-light rounded px-3 pt-2">
                             <div class="d-flex-c-b py-2">
-                                <span class="fs-small text-dark"> نظرات شما  </span>
+                                <span class="fs-small text-dark"> نظرات شما (فروشگاه) </span>
                             </div>
                             <div class="col-12 px-0 bg-wihte px-2 fs-small">
                                 <table class="table">
@@ -39,7 +39,7 @@
                                         </tr>
                                     </thead>
                                     <tbody class="text-muted">
-                                        {% for comment in object_list %}
+                                        {% for comment in productcomment %}
                                             <tr>
                                                 <th scope="row">{{ forloop.counter }}</th>
                                                 <td>{{ comment.product.title }}</td>
@@ -49,7 +49,38 @@
                                                 {% else %}    
                                                     <td><span class="fs-m bg-warning rounded px-2 py-1 text-light top-3">در انتظار تایید</span></td>
                                                 {% endif %}    
-                                                <td> <a href="{% url 'comment:comment-delete' comment.pk %}" class="btn btn-sm bg-danger rounded fs-m my-0" > حذف </a> </td>
+                                                <td> <a href="{% url 'comment:product-comment-delete' comment.pk %}" class="btn btn-sm bg-danger rounded fs-m my-0" > حذف </a> </td>
+                                                </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="d-flex-c-b py-2">
+                                <span class="fs-small text-dark"> نظرات شما (وبلاگ) </span>
+                            </div>
+                            <div class="col-12 px-0 bg-wihte px-2 fs-small">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">مقاله</th>
+                                            <th scope="col">دیدگاه شما</th>
+                                            <th scope="col">وضعیت </th>
+                                            <th scope="col">حذف </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-muted">
+                                        {% for comment in articlecomment %}
+                                            <tr>
+                                                <th scope="row">{{ forloop.counter }}</th>
+                                                <td>{{ comment.article.title }}</td>
+                                                <td>{{ comment.content }}</td>
+                                                {% if comment.status == "confirmed" %}
+                                                    <td><span class="fs-m bg-green rounded px-2 py-1 text-light top-3">تایید شده </span></td>
+                                                {% else %}    
+                                                    <td><span class="fs-m bg-warning rounded px-2 py-1 text-light top-3">در انتظار تایید</span></td>
+                                                {% endif %}    
+                                                <td> <a href="{% url 'comment:article-comment-delete' comment.pk %}" class="btn btn-sm bg-danger rounded fs-m my-0" > حذف </a> </td>
                                                 </tr>
                                         {% endfor %}
                                     </tbody>

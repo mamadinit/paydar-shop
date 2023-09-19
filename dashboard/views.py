@@ -1,14 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import UpdateView, ListView
+from django.views.generic import UpdateView, ListView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin 
 from django.contrib.messages.views import SuccessMessageMixin
 from account.models import User, Address
 from account.forms import AddressUpdateForm
 from shop.models import Order
-from comment.models import Comment
+from comment.models import ProductComment, ArticleComment
 from .forms import DashboardInfoForm
-from comment.forms import CommentUpdateForm
 
 # Create your views here.
 
@@ -60,8 +59,15 @@ class DashboardOrderView(LoginRequiredMixin, ListView):
                                         
 
 
-class DashboardCommentView(LoginRequiredMixin, ListView):
+class DashboardCommentView(LoginRequiredMixin, TemplateView):
     template_name = 'dashboard/dashboard-comments.html'
 
-    def get_queryset(self):
-        return Comment.objects.filter(user=self.request.user)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+    
+        context['productcomment'] = ProductComment.objects.filter(user=self.request.user)
+        context['articlecomment']=  ArticleComment.objects.filter(user=self.request.user)
+
+
+        return context

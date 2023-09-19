@@ -18,13 +18,13 @@
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="{% static 'img/bb.jpg' %}" class="d-block w-100" alt="...">
+                            <img src="{% static 'img/banner1.png' %}" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="{% static 'img/bb.jpg' %}" class="d-block w-100" alt="...">
+                            <img src="{% static 'img/banner2.png' %}" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="{% static 'img/bb.jpg' %}" class="d-block w-100" alt="...">
+                            <img src="{% static 'img/banner3.png' %}" class="d-block w-100" alt="...">
                         </div>
                     </div>
                     <style>
@@ -255,90 +255,31 @@
                     </div>
                     <div class="col-12 d-flex-c-b py-3">
                         <div class="owl-carousel owl-blog owl-theme">
-                            <div class="item">
-                                <div class="shadow-sm">
-                                    <div>
-                                        <img src="{% static 'img/02.webp' %}" class="w-100" alt="">
-                                    </div>
-                                    <div class="blogmainbox-body px-2 my-3">
-                                        <a href="" class="text-dark">
-                                            سامسونگ در سه‌ماه نخست ۲۰۲۲ صدرنشین بازار موبایل باقی ماند
-                                    </a>
-                                        <p class="text-muted mt-2">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون است ... </p>
-                                    </div>
-                                    <div class="d-flex-c-b px-2 pb-3 mt-3">
-                                        <a href="" class="text-muted fs-small">
-                                            <i class="far fa-user pe-2"></i> <span>وصال علی زاده</span>
+            
+                            {% for article in articles %}
+                                <div class="item">
+                                    <div class="shadow-sm">
+                                        <div>
+                                            <img src="{{ article.thumbnail.url }}" class="w-100" alt="">
+                                        </div>
+                                        <div class="blogmainbox-body px-2 my-3">
+                                            <a href="{% url 'blog:article-detail' article.slug %}" class="text-dark">
+                                                {{ article.title }}
                                         </a>
-                                        <a href="" class="text-muted">
-                                            <i class="far fa-long-arrow-left fs-5"></i>
-                                        </a>
+                                            <p class="text-muted mt-2">دسته بندی : {{ article.category_to_str }}</p>
+                                        </div>
+                                        <div class="d-flex-c-b px-2 pb-3 mt-3">
+                                            <a href="" class="text-muted fs-small">
+                                                <i class="far fa-user pe-2"></i> <span>{{ article.author }}</span>
+                                            </a>
+                                            <a href="{% url 'blog:article-detail' article.slug %}" class="text-muted">
+                                                <i class="far fa-long-arrow-left fs-5"></i>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="item">
-                                <div class="shadow-sm">
-                                    <div>
-                                        <img src="{% static 'img/google-ads-app-install-300x300.webp' %}" class="w-100" alt="">
-                                    </div>
-                                    <div class="blogmainbox-body px-2 my-3">
-                                        <a href="" class="text-dark">
-                                            سامسونگ در سه‌ماه نخست ۲۰۲۲ صدرنشین بازار موبایل باقی ماند
-                                    </a>
-                                        <p class="text-muted mt-2">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون است ... </p>
-                                    </div>
-                                    <div class="d-flex-c-b px-2 pb-3 mt-3">
-                                        <a href="" class="text-muted fs-small">
-                                            <i class="far fa-user pe-2"></i> <span>وصال علی زاده</span>
-                                        </a>
-                                        <a href="" class="text-muted">
-                                            <i class="far fa-long-arrow-left fs-5"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="shadow-sm">
-                                    <div>
-                                        <img src="{% static 'img/61a32e94e8f10b1c89304df5.webp' %}" class="w-100" alt="">
-                                    </div>
-                                    <div class="blogmainbox-body px-2 my-3">
-                                        <a href="" class="text-dark">
-                                            سامسونگ در سه‌ماه نخست ۲۰۲۲ صدرنشین بازار موبایل باقی ماند
-                                    </a>
-                                        <p class="text-muted mt-2">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون است ... </p>
-                                    </div>
-                                    <div class="d-flex-c-b px-2 pb-3 mt-3">
-                                        <a href="" class="text-muted fs-small">
-                                            <i class="far fa-user pe-2"></i> <span>وصال علی زاده</span>
-                                        </a>
-                                        <a href="" class="text-muted">
-                                            <i class="far fa-long-arrow-left fs-5"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="shadow-sm">
-                                    <div>
-                                        <img src="{% static 'img/4-350x235.webp' %}" class="w-100" alt="">
-                                    </div>
-                                    <div class="blogmainbox-body px-2 my-3">
-                                        <a href="" class="text-dark">
-                                            سامسونگ در سه‌ماه نخست ۲۰۲۲ صدرنشین بازار موبایل باقی ماند
-                                    </a>
-                                        <p class="text-muted mt-2">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون است ... </p>
-                                    </div>
-                                    <div class="d-flex-c-b px-2 pb-3 mt-3">
-                                        <a href="" class="text-muted fs-small">
-                                            <i class="far fa-user pe-2"></i> <span>وصال علی زاده</span>
-                                        </a>
-                                        <a href="" class="text-muted">
-                                            <i class="far fa-long-arrow-left fs-5"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                            
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

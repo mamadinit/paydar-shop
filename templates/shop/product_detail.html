@@ -193,14 +193,14 @@
                                     <div class="col-12 commemts-head border-bottom pb-2 d-flex-c-c flex-wrap px-4">
                                         <div class="col-lg-6 col-12 pe-lg-5">
                                             {% if user.is_authenticated %}
-                                                <form action="{% url 'comment:comment-create' object.slug %}" method="post">{% csrf_token %}
+                                                <form action="{% url 'comment:product-comment-create' object.slug %}" method="post">{% csrf_token %}
                                                     <div class="form-group">
                                                         {% render_field form.content class="form-control fw-bold fs-small pt-3" cols="6" rows="6" placeholder="نظر یا پرسش خود را مطرح کنید ..." %}
                                                     </div>
                                                     <button type="submit" class="btn bg-red rounded px-3 py-2 text-light mt-2"> ثبت نظر </button>
                                                 </form>
                                             {% else %}    
-                                                <span class="text-warning"> لطفا برای ثبت نظر ابتدا وارد حساب کاربری خود شوید </span>
+                                            <div class="alert alert-warning text-center fs-small"> برای افزودن نظر ابتدا وارد حساب کاربری خود شوید <a href="{% url 'login' %}" class="btn bg-warning text-muted px-3 py-1 rounded ms-2"> ورود </a></div>
                                             {% endif %}
                                         </div>
                                         <div class="col-lg-6 col-12 pb-3 pb-lg-5 mt-2 mt-lg-0">
