@@ -1,6 +1,4 @@
-from typing import Any, Dict
 from django.db import models
-from django.db.models.query import QuerySet
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView, TemplateView, ListView, View
@@ -151,7 +149,7 @@ class SearchView(ListView):
 
         return Product.objects.filter(Q(description__icontains=query) | Q(title__icontains=query))	
     
-    def get_context_data(self, **kwargs: Any):
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs) 
         context['query'] = self.request.GET.get('query')
 
